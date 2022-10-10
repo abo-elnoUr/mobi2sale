@@ -18,14 +18,14 @@ export class BrandsComponent implements OnInit {
   brands: Brand[] = []
   idBrand: any = null
   apiSrc = 'http://algosys-001-site8.ctempurl.com'
-  imageUrl:any = ''
+  imageUrl: any = ''
 
 
 
-  constructor(private _ProductService:ProductService, private _ActivatedRoute:ActivatedRoute, private _ToastrService:ToastrService) {
+  constructor(private _ProductService: ProductService, private _ActivatedRoute: ActivatedRoute, private _ToastrService: ToastrService) {
     this.idProduct = this._ActivatedRoute.snapshot.params['id'];
 
-   }
+  }
 
   brandForm = new FormGroup({
     id: new FormControl('', Validators.required),
@@ -45,32 +45,31 @@ export class BrandsComponent implements OnInit {
 
   // get product with id
 
-  getProduct(id: any){
+  getProduct(id: any) {
     this._ProductService.getOneCategory(id).subscribe((product) => {
-     this.idProduct = product.id;
-     this.productName = product.name;
+      this.idProduct = product.id;
+      this.productName = product.name;
+    }
+    )
   }
-  )}
 
   // view image
-  viewImage(imageUrl: any){
+  viewImage(imageUrl: any) {
     this.imageUrl = imageUrl
   }
 
   // get all brands
 
-  getBrands(){
+  getBrands() {
     this.idProduct = this._ActivatedRoute.snapshot.params['id'];
     this._ProductService.getBrands(this.idProduct).subscribe((brands) => {
       this.brands = brands
-      console.log(brands);
-
     })
   }
 
   // get brand
 
-  getBrand(id: any){
+  getBrand(id: any) {
     this._ProductService.getBrand(id).subscribe((brand) => {
       this.idBrand = brand.id;
       this.brandForm.patchValue({
@@ -90,7 +89,7 @@ export class BrandsComponent implements OnInit {
   }
 
 
-  addBrand(){
+  addBrand() {
     this.brandForm.get('id')?.setValue(this.idBrand);
     const addFormData = new FormData()
     var file = this.brandForm.get('file').getRawValue()
@@ -100,13 +99,23 @@ export class BrandsComponent implements OnInit {
     addFormData.append('file', file)
 
     this._ProductService.addBrand(addFormData).subscribe((addBrand) => {
-      this._ToastrService.success('added 💛')
+      this._ToastrService.success('and added 👍')
       this.brandForm.reset();
       this.getBrands()
-    },(error) => {
-      this._ToastrService.error('error!');
     },
-    () => {})
+      (error) => {
+        switch (error.status) {
+          case 500:
+            this._ToastrService.error(error.error.errors as string);
+            break
+          case 400:
+            for (const [key, value] of Object.entries(error.error.errors)) {
+              this._ToastrService.error(value as string);
+            }
+            break
+        }
+      },
+      () => { })
 
   }
 
@@ -118,7 +127,7 @@ export class BrandsComponent implements OnInit {
   }
 
 
-  updateBrand(){
+  updateBrand() {
     this.brandForm.get('id')?.setValue(this.idBrand);
     const updateFormData = new FormData();
     var image = this.brandForm.get('file')?.getRawValue();
@@ -132,18 +141,31 @@ export class BrandsComponent implements OnInit {
     updateFormData.append('categoryId', this.idProduct)
 
     this._ProductService.updateBrand(updateFormData, this.idBrand).subscribe((updated) => {
-      this._ToastrService.info('updated 💛')
+      this._ToastrService.info('updated 👏')
       this.brandForm.reset();
       this.getBrands()
-    })
+    },
+      (error) => {
+        switch (error.status) {
+          case 500:
+            this._ToastrService.error(error.error.errors as string);
+            break
+          case 400:
+            for (const [key, value] of Object.entries(error.error.errors)) {
+              this._ToastrService.error(value as string);
+            }
+            break
+        }
+      },
+      () => { })
 
   }
 
   // delete brand
 
-  deleteBrand(id: any){
+  deleteBrand(id: any) {
     this._ProductService.deleteBrand(id).subscribe((deleteBrand) => {
-      this._ToastrService.error('deleted 💛')
+      this._ToastrService.error('brand deleted 😭')
       this.getBrands()
 
     })

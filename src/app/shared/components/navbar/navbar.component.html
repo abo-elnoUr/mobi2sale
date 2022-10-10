@@ -1,144 +1,96 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container-fluid">
+        <a class="navbar-brand"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-nav-scroll">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-nav-scroll">
 
-      </ul>
+            </ul>
 
-      <!-- notificaion -->
+            <!-- notificaion -->
 
-      <!-- <div class="wrapper"> -->
-        <div class="notification_wrap">
-          <div class="notification_icon text-end position-relative mb-sm-2" data-bs-auto-close="outside">
-            <i class="fas fa-bell text-info"></i>
-            <span style="font-size: 10px;" class="small position-absolute  translate-middle badge rounded-pill bg-primary">
-              99+
-            </span>
-          </div>
-          <div class="dropdown" style="max-height: 300px; overflow-y: auto; overflow-x: hidden" data-bs-auto-close="outside">
-            <div class="card-header d-flex justify-content-between">
-              <h5 class="ms-2 px-2 text-start">notifications</h5>
-              <a class="me-2 px-2 text-end text-decoration-none text-dark" style="cursor: pointer;">view all</a>
-            </div>
-            <div class="dropdown-divider"></div>
-            <hr>
-            <div class="notify_item">
-              <div class="notify_img">
-                <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
-              </div>
-              <div class="notify_info">
-                <p>Alex commented onTimeline Share</p>
-                <span class="notify_time">10 minutes ago</span>
-              </div>
-            </div>
-            <div class="notify_item">
-              <div class="notify_img">
-                <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
-              </div>
-              <div class="notify_info">
-                <p>Ben hur commented on your Timeline Share</p>
-                <span class="notify_time">55 minutes ago</span>
-              </div>
-            </div>
-            <div class="notify_item">
-              <div class="notify_img">
-                <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
-              </div>
-              <div class="notify_info">
-                <p>Meryn trant liked yourCover Picture</p>
-                <span class="notify_time">2 hours ago</span>
-              </div>
-            </div>
-            <div class="notify_item">
-              <div class="notify_img">
-                <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
-              </div>
-              <div class="notify_info">
-                <p>John wick commented on your Profile Picture</p>
-                <span class="notify_time">6 hours ago</span>
-              </div>
-            </div>
-            <div class="notify_item">
-              <div class="notify_img">
-                <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
-              </div>
-              <div class="notify_info">
-                <p>John wick commented on your Profile Picture</p>
-                <span class="notify_time">6 hours ago</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      <!-- </div> -->
-
-
-      <!-- notificaion -->
-
-      <!-- <div class="dropdown dropdown-menu-lg-end">
-        <button class="btn btn-outline-info dropdown-toggle position-relative me-3 mt-1  mb-sm-2" type="button"
-          data-bs-auto-close="outside" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-bell"></i>
-          <span class="small position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+            <!-- <div class="wrapper"> -->
+            <div class="notification_wrap">
+                <div class="notification_icon text-end position-relative mb-sm-2" data-bs-auto-close="outside">
+                    <i class="fas fa-bell text-info"></i>
+                    <span style="font-size: 10px;" class="small position-absolute  translate-middle badge rounded-pill bg-primary">
             99+
-            <span class="visually-hidden">unread messages</span>
           </span>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <div class="card-header">
-            <h5 class="ms-2 p-2">notifications</h5>
-          </div>
-          <div class="list-group " style="max-height: 200px; width: 400px; overflow-y: auto; overflow-x: hidden">
-            <a routerLink="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">notification title</h5>
-                <small>3 days ago</small>
-              </div>
-              <p class="mb-1">notification description and content body</p>
-            </a>
-            <a routerLink="#" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">notification title</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">notification description and content body</p>
-            </a>
-            <a routerLink="#" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">notification title</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
-              <p class="mb-1">notification description and content body</p>
-            </a>
-          </div>
-          <div class="card-header text-center">
-            <a routerLink="" class="dropdown-item p-2 ">view all</a>
-          </div>
-        </div>
-      </div> -->
+                </div>
+                <div class="dropdown" style="max-height: 300px; overflow-y: auto; overflow-x: hidden" data-bs-auto-close="outside">
+                    <div class="card-header d-flex justify-content-between">
+                        <h5 class="ms-2 px-2 text-start">notifications</h5>
+                        <a class="me-2 px-2 text-end text-decoration-none text-dark" style="cursor: pointer;">view all</a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <hr>
+                    <div class="notify_item">
+                        <div class="notify_img">
+                            <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
+                        </div>
+                        <div class="notify_info">
+                            <p>Alex commented onTimeline Share</p>
+                            <span class="notify_time">10 minutes ago</span>
+                        </div>
+                    </div>
+                    <div class="notify_item">
+                        <div class="notify_img">
+                            <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
+                        </div>
+                        <div class="notify_info">
+                            <p>Ben hur commented on your Timeline Share</p>
+                            <span class="notify_time">55 minutes ago</span>
+                        </div>
+                    </div>
+                    <div class="notify_item">
+                        <div class="notify_img">
+                            <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
+                        </div>
+                        <div class="notify_info">
+                            <p>Meryn trant liked yourCover Picture</p>
+                            <span class="notify_time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="notify_item">
+                        <div class="notify_img">
+                            <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
+                        </div>
+                        <div class="notify_info">
+                            <p>John wick commented on your Profile Picture</p>
+                            <span class="notify_time">6 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="notify_item">
+                        <div class="notify_img">
+                            <img src="assets/images/not_2.png" alt="profile_pic" style="width: 50px">
+                        </div>
+                        <div class="notify_info">
+                            <p>John wick commented on your Profile Picture</p>
+                            <span class="notify_time">6 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- </div> -->
 
-      <div class="dropdown text-end">
-        <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-auto-close="outside"
-          id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown text-end">
+                <button class="btn btn-outline-info dropdown-toggle" type="button" data-bs-auto-close="outside" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
           Account<i class="fa-regular fa-user ms-1"></i>
         </button>
-        <ul class="dropdown-menu dropdown-menu-dark" style="max-height: 200px; overflow-y: auto; overflow-x: hidden"
-          aria-labelledby="dropdownMenuButton">
-          <li>
-            <a class="dropdown-item" style="cursor: pointer">Profile <i class="fa-solid fa-circle-user ms-4"></i></a>
-          </li>
-          <li *ngIf="_ProductService.isLogin">
-            <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Logout <i
+                <ul class="dropdown-menu dropdown-menu-mine dropdown-menu-dark" style="max-height: 200px; overflow-y: auto; overflow-x: hidden" aria-labelledby="dropdownMenuButton">
+                    <li>
+                        <a class="dropdown-item" style="cursor: pointer">Profile <i class="fa-solid fa-circle-user ms-4"></i></a>
+                    </li>
+                    <li *ngIf="_ProductService.isLogin">
+                        <a class="dropdown-item" style="cursor: pointer" (click)="logout()">Logout <i
                 class="fa-solid fa-right-from-bracket ms-4"></i></a>
-          </li>
-        </ul>
-      </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 
 <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu" />
@@ -148,108 +100,121 @@
   <div class="spinner diagonal part-2"></div>
 </label>
 <div id="sidebarMenu" style="z-index: 99999;">
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px; height: 100%;">
-    <a routerLink="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Mobi2Sale</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item bg-info rounded mb-2">
-        <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link text-white">
-          <i class="fa-solid fa-house"></i>
-          Home
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px; height: 100%;">
+        <a routerLink="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+        <use xlink:href="#bootstrap" />
+      </svg>
+            <span class="fs-4">Mobi2Sale</span>
         </a>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a routerLink="products" routerLinkActive="active"  class="nav-link text-white">
-          <i class="fa-solid fa-box-open"></i>
-          Product
-        </a>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a class="nav-link text-light" routerLinkActive="active"  style="cursor: pointer;"  data-bs-toggle="collapse" data-bs-target="#department-collapse" aria-expanded="false">
-          <i class="fa-solid fa-table-cells-large"></i>
-          Departments
-        </a>
-        <div class="collapse bg-light rounded p-1" id="department-collapse">
-          <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
-            <li><a routerLink="departments/department" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-network-wired me-1 mt-1 text-info"></i>Departments</a></li>
-            <li><a routerLink="departments/subDepartment" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-diagram-predecessor me-1 mt-1 text-info"></i>SubDepartments</a></li>
-            <li><a routerLink="departments/branch" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-code-branch me-1 mt-1 text-info"></i>Branches</a></li>
-            <li><a routerLink="departments/branchRefund" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-code-pull-request me-1 mt-1 text-info"></i>Branch Refund</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-square-poll-horizontal me-1 mt-1 text-info"></i>Branch Refund To Store</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a class="nav-link text-light" routerLinkActive="active"  style="cursor: pointer;"  data-bs-toggle="collapse" data-bs-target="#salesOption-collapse" aria-expanded="false">
-          <i class="fa-solid fa-gear"></i>
-          Sales OPtions
-        </a>
-        <div class="collapse bg-light rounded p-1" id="salesOption-collapse">
-          <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-right-left me-1 mt-1 text-info"></i>Exchange Voucher</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-credit-card me-1 mt-1 text-info"></i>Indoor Invoice</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-box me-1 mt-1 text-info"></i>Order Exchange</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-layer-group me-1 mt-1 text-info"></i>Sales Area</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-square-poll-horizontal me-1 mt-1 text-info"></i>Sales Refund</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;"  data-bs-toggle="collapse" data-bs-target="#store-collapse" aria-expanded="false">
-          <i class="fa-solid fa-store"></i>
-          Stores
-        </a>
-        <div class="collapse bg-light rounded p-1" id="store-collapse">
-          <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
-            <li><a routerLink="stores/addtionVoucher" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-file-invoice me-1 mt-1 text-info"></i>Addition Voucher</a></li>
-            <li><a routerLink="stores/suppliers" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-truck-field-un me-1 mt-1 text-info"></i>Suppliers</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;"  data-bs-toggle="collapse" data-bs-target="#employee-collapse" aria-expanded="false">
-          <i class="fa-solid fa-users"></i>
-          Employees
-        </a>
-        <div class="collapse bg-light rounded p-1" id="employee-collapse">
-          <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-building-user me-1 mt-1 text-info"></i>Employees</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-sack-dollar me-1 mt-1 text-info"></i>Sales Men</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;"  data-bs-toggle="collapse" data-bs-target="#client-collapse" aria-expanded="false">
-          <i class="fa-solid fa-id-card-clip"></i>
-          Clients
-        </a>
-        <div class="collapse bg-light rounded p-1" id="client-collapse">
-          <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
-            <li><a routerLink="clients/client" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-users me-1 mt-1 text-info"></i>Clients</a></li>
-            <li><a routerLink="clients/promoCode" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-percent me-1 mt-1 text-info"></i>Promo Codes</a></li>
-            <li><a routerLink="clients/offers" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-gift me-1 mt-1 text-info"></i>Offers</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="nav-item bg-info rounded mb-2">
-        <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;"  data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
-          <i class="fa-regular fa-flag"></i>
-          Reports
-        </a>
-        <div class="collapse bg-light rounded p-1" id="reports-collapse">
-          <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-comment-dollar me-1 mt-1 text-info"></i>Item Transaction</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-database me-1 mt-1 text-info"></i>Salesman Account</a></li>
-            <li><a routerLink="" routerLinkActive="active"  class="link-dark rounded"><i class="fa-solid fa-money-bill-1-wave me-1 mt-1 text-info"></i>Cash Reset</a></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item bg-info rounded mb-2">
+                <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link text-white">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a routerLink="products" routerLinkActive="active" class="nav-link text-white">
+                    <i class="fa-solid fa-box-open"></i> Product
+                </a>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#department-collapse" aria-expanded="false">
+                    <i class="fa-solid fa-table-cells-large"></i> Departments
+                </a>
+                <div class="collapse bg-light rounded p-1" id="department-collapse">
+                    <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
+                        <li><a routerLink="departments/department" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-network-wired me-1 mt-1 text-info"></i>Departments</a></li>
+                        <li><a routerLink="departments/subDepartment" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-diagram-predecessor me-1 mt-1 text-info"></i>SubDepartments</a></li>
+                        <li><a routerLink="departments/branch" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-code-branch me-1 mt-1 text-info"></i>Branches</a></li>
+                        <li><a routerLink="departments/branchRefund" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-code-pull-request me-1 mt-1 text-info"></i>Branch Refund</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-square-poll-horizontal me-1 mt-1 text-info"></i>Branch Refund To Store</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#salesOption-collapse" aria-expanded="false">
+                    <i class="fa-solid fa-gear"></i> Sales OPtions
+                </a>
+                <div class="collapse bg-light rounded p-1" id="salesOption-collapse">
+                    <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-right-left me-1 mt-1 text-info"></i>Exchange Voucher</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-credit-card me-1 mt-1 text-info"></i>Indoor Invoice</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-box me-1 mt-1 text-info"></i>Order Exchange</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-layer-group me-1 mt-1 text-info"></i>Sales Area</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-square-poll-horizontal me-1 mt-1 text-info"></i>Sales Refund</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#store-collapse" aria-expanded="false">
+                    <i class="fa-solid fa-store"></i> Stores
+                </a>
+                <div class="collapse bg-light rounded p-1" id="store-collapse">
+                    <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
+                        <li><a routerLink="stores/addtionVoucher" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-file-invoice me-1 mt-1 text-info"></i>Addition Voucher</a></li>
+                        <li><a routerLink="stores/suppliers" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-truck-field-un me-1 mt-1 text-info"></i>Suppliers</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#employee-collapse" aria-expanded="false">
+                    <i class="fa-solid fa-users"></i> Employees
+                </a>
+                <div class="collapse bg-light rounded p-1" id="employee-collapse">
+                    <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-building-user me-1 mt-1 text-info"></i>Employees</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-sack-dollar me-1 mt-1 text-info"></i>Sales Men</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#client-collapse" aria-expanded="false">
+                    <i class="fa-solid fa-id-card-clip"></i> Clients
+                </a>
+                <div class="collapse bg-light rounded p-1" id="client-collapse">
+                    <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
+                        <li><a routerLink="clients/client" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-users me-1 mt-1 text-info"></i>Clients</a></li>
+                        <li><a routerLink="clients/promoCode" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-percent me-1 mt-1 text-info"></i>Promo Codes</a></li>
+                        <li><a routerLink="clients/offers" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-gift me-1 mt-1 text-info"></i>Offers</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item bg-info rounded mb-2">
+                <a class="nav-link text-light" routerLinkActive="active" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
+                    <i class="fa-regular fa-flag"></i> Reports
+                </a>
+                <div class="collapse bg-light rounded p-1" id="reports-collapse">
+                    <ul class="btn-toggle-nav  list-unstyled fw-normal pb-1">
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-comment-dollar me-1 mt-1 text-info"></i>Item Transaction</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-database me-1 mt-1 text-info"></i>Salesman Account</a></li>
+                        <li><a routerLink="" routerLinkActive="active" class="link-dark rounded"><i
+                  class="fa-solid fa-money-bill-1-wave me-1 mt-1 text-info"></i>Cash Reset</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
 
-  </div>
+    </div>
 
 </div>
-

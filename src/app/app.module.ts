@@ -15,6 +15,7 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ProductsComponent } from './shared/components/products/products.component';
+import { ItemsComponent } from './shared/components/items/items.component';
 
 
 
@@ -25,7 +26,8 @@ import { ProductsComponent } from './shared/components/products/products.compone
     LoginComponent,
     NavbarComponent,
     NotFoundComponent,
-    ProductsComponent
+    ProductsComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

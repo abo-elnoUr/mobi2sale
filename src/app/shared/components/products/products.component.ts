@@ -17,7 +17,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private _ProductService: ProductService,
     private _ToastrService: ToastrService
-  ) {}
+  ) { }
 
   productForm = new FormGroup({
     id: new FormControl('', Validators.required),
@@ -50,7 +50,7 @@ export class ProductsComponent implements OnInit {
       (error) => {
         this._ToastrService.error('error!');
       },
-      () => {}
+      () => { }
     );
   }
 
@@ -92,9 +92,22 @@ export class ProductsComponent implements OnInit {
         this.getAllProducts();
       },
       (error) => {
-        this._ToastrService.error('error!');
+        switch (error.status) {
+          case 500:
+            //   for (const [key, value] of Object.entries(error.error.errors)) {
+            //   this._ToastrService.error(value as string);
+            // }
+            this._ToastrService.error(error.error.errors as string);
+            break
+          case 400:
+            for (const [key, value] of Object.entries(error.error.errors)) {
+              this._ToastrService.error(value as string);
+            }
+            // this._ToastrService.error(error.error.errors as string);
+            break
+        }
       },
-      () => {}
+      () => { }
     );
   }
 
@@ -105,7 +118,7 @@ export class ProductsComponent implements OnInit {
     this.addProductForm.get('file')?.setValue(image);
   }
 
-  addCategory(){
+  addCategory() {
     const addFormData = new FormData()
     var file = this.addProductForm.get('file').getRawValue()
     addFormData.append('name', this.addProductForm.get('name').getRawValue())
@@ -114,17 +127,31 @@ export class ProductsComponent implements OnInit {
 
     this._ProductService.addCategory(addFormData).subscribe((addCategory) => {
       this._ToastrService.success('added 💛');
-        this.addProductForm.reset();
-        this.getAllProducts();
-    },(error) => {
-      this._ToastrService.error('error!');
+      this.addProductForm.reset();
+      this.getAllProducts();
     },
-    () => {})
+      (error) => {
+        switch (error.status) {
+          case 500:
+            //   for (const [key, value] of Object.entries(error.error.errors)) {
+            //   this._ToastrService.error(value as string);
+            // }
+            this._ToastrService.error(error.error.errors as string);
+            break
+          case 400:
+            for (const [key, value] of Object.entries(error.error.errors)) {
+              this._ToastrService.error(value as string);
+            }
+            // this._ToastrService.error(error.error.errors as string);
+            break
+        }
+      },
+      () => { })
   }
 
   // delete category
 
-  deleteCategory(id: any){
+  deleteCategory(id: any) {
     this._ProductService.deleteCategory(id).subscribe((deleteCategory) => {
       this._ToastrService.error('deleted 💛')
       this.getAllProducts()
