@@ -1,0 +1,183 @@
+<section class="container" style="height: 100vh">
+  <div class="arrow-back" style="margin-top: 20px">
+    <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
+  </div>
+
+<div class="department-title mt-4">
+  <h5 class="text-start ms-2">Departments</h5>
+</div>
+
+<div class="text-end">
+  <button class="btn btn-outline-primary text-end btn-add-brand" data-bs-toggle="modal" data-bs-target="#addDepartment">
+    Create Department
+    <i class="fa-solid fa-network-wired"></i>
+  </button>
+</div>
+<div *ngIf="departments.length == 0"  class="d-flex justify-content-center align-content-center mt-5 flex-column">
+  <h4 class="text-center my-5">no departments!</h4>
+  <div class="d-flex justify-content-center align-content-center">
+    <img src="assets/images/no_department.svg"  width="350">
+  </div>
+</div>
+<div *ngIf="departments.length > 0" class="brands table-responsive">
+  <table class="table table-hover table-brand">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Department Name</th>
+        <th scope="col">Manager Phone</th>
+        <th scope="col">Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of departments; let i= index" style="vertical-align: middle;">
+        <th scope="row" >{{ i + 1 }}</th>
+        <td>{{ department.name }}</td>
+        <td>
+          {{ department.phone }}
+        </td>
+        <td>
+          <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getDepartmrnt(department.id)" data-bs-toggle="modal" data-bs-target="#editDepartment">
+            <i class="fa-regular fa-pen-to-square"></i>
+          </button>
+          <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteDepartment(department.id)">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- add department form -->
+
+<div class="modal fade" id="addDepartment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addDepartmentForm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Name</span>
+            <input type="text" class="form-control" placeholder="name" formControlName="name" aria-label="name"
+              aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Phone</span>
+            <input type="text" class="form-control" placeholder="phone" formControlName="phone"
+              aria-label="phone" aria-describedby="basic-addon2" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Manger</span>
+            <select #mgrId (change)="onSelectMgrId($event)" class="form-select"  aria-label="Default select example">
+              <option disabled selected>Select Manger</option>
+              <option  *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}</option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Description</span>
+            <input type="text" class="form-control" placeholder="description" formControlName="description"
+              aria-label="description" aria-describedby="basic-addon2" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <button type="button" (click)="addDepartment()" class="btn btn-outline-primary">
+          <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit department -->
+
+<div class="modal fade" id="editDepartment" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Department </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editDepartmentForm">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Name</span>
+            <input type="text" required="" class="form-control" placeholder="name" formControlName="name" aria-label="name"
+              aria-describedby="basic-addon1" />
+          </div>
+          <div *ngIf="
+            editDepartmentFormValidate['name'].invalid &&
+            (editDepartmentFormValidate['name'].dirty ||
+              editDepartmentFormValidate['name'].touched)
+          ">
+                <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['name'].errors?.['required']">
+                  name required
+                </small>
+            </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Phone</span>
+            <input type="text" required="" class="form-control" placeholder="phone" formControlName="phone"
+              aria-label="phone" aria-describedby="basic-addon2" />
+          </div>
+          <div *ngIf="
+            editDepartmentFormValidate['phone'].invalid &&
+            (editDepartmentFormValidate['phone'].dirty ||
+              editDepartmentFormValidate['phone'].touched)
+          ">
+                <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['phone'].errors?.['required']">
+                  phone required
+                </small>
+            </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Manger</span>
+            <select #mgrId2 required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="manger"  aria-label="Default select example">
+              <option disabled selected>Select Manger</option>
+              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}</option>
+            </select>
+          </div>
+          <div *ngIf="
+            editDepartmentFormValidate['manger'].invalid &&
+            (editDepartmentFormValidate['manger'].dirty ||
+              editDepartmentFormValidate['manger'].touched)
+          ">
+                <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['manger'].errors?.['required']">
+                  manger required
+                </small>
+            </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Description</span>
+            <input type="text" required="" class="form-control" placeholder="description" formControlName="description"
+              aria-label="description" aria-describedby="basic-addon2" />
+          </div>
+          <div *ngIf="
+            editDepartmentFormValidate['description'].invalid &&
+            (editDepartmentFormValidate['description'].dirty ||
+              editDepartmentFormValidate['description'].touched)
+          ">
+                <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['description'].errors?.['required']">
+                  description required
+                </small>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <button type="button" (click)="editDepartment()"  class="btn btn-outline-info">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

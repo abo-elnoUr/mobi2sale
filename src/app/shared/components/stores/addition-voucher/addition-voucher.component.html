@@ -1,0 +1,116 @@
+<section class="container">
+  <div class="arrow-back" style="margin-top: 20px;">
+    <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"
+      ><i class="fa-solid fa-arrow-left fs-3"></i
+    ></a>
+  </div>
+<div class="additionVoucher-title mt-4">
+  <h5 class="text-start ms-2">Addition Vouchers</h5>
+</div>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-6 col-sm-12">
+    <div class="input-group my-3">
+      <span class="input-group-text" id="name"><i class="fa-solid
+          fa-magnifying-glass"></i></span>
+      <input type="search" class="form-control input-search" style="outline:
+        none" placeholder="Search ..." aria-describedby="name" />
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12 text-end">
+  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addAdditionVoucher">Create Addition Voucher<i class="fa-solid fa-file-invoice ms-1"></i></button>
+  </div>
+</div>
+<div *ngIf="additionVoucher.length == 0"  class="d-flex justify-content-center align-content-center mt-5 flex-column">
+  <div class="d-flex justify-content-center align-content-center">
+    <img src="assets/images/discounts.png"  width="350">
+  </div>
+  <h4 class="text-center my-5">No Addition Voucher!</h4>
+</div>
+
+<div *ngIf="additionVoucher.length > 0" class="brands table-responsive text-center mt-2">
+  <table class="table table-hover table-brand">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let addition of additionVoucher; let i= index"
+        style="vertical-align: middle;">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ addition.serialNo }}</td>
+        <td>
+          <button class="btn btn-outline-info me-1 btn-edit-brand" >
+            <i class="fa-regular fa-pen-to-square"></i>
+          </button>
+          <button class="btn btn-outline-danger btn-delete-brand" >
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- modal add addoition voucher -->
+
+<div class="modal fade" id="addAdditionVoucher" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Addition Voucher </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addAdditionVoucherForm">
+
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Supplier</span>
+                <select required class="form-select" (change)="onAddSelectSup($event)" formControlName="supplierId" aria-label="Default select example">
+                  <option disabled selected>Select Supplier</option>
+                  <option  *ngFor="let sup of supliers; let i = index" [value]="sup.id">{{ sup.name }}</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Stores</span>
+                <select required class="form-select" (change)="onAddSelectStore($event)" formControlName="storeId" aria-label="Default select example">
+                  <option disabled selected>Select Store</option>
+                  <option  *ngFor="let store of stores; let i = index" [value]="store.id">{{ store.name }}</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Category</span>
+                <select required class="form-select" (change)="onAddSelectEmp($event)" formControlName="employeeId" aria-label="Default select example">
+                  <option disabled selected>Select Category</option>
+                  <option  *ngFor="let emp of employees; let i = index" [value]="emp.id">{{ emp.firstName }}</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Total</span>
+                <input type="number"  class="form-control" placeholder="Total" formControlName="total" />
+              </div>
+
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Serial number</span>
+                <input type="text" class="form-control" placeholder="Serial number" formControlName="serialNo" />
+              </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <button type="button" (click)="addAdditionVoucher()" class="btn btn-outline-primary">
+          <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,213 @@
+<section class="container" style="height: 100vh">
+  <div class="arrow-back" style="margin-top: 20px">
+    <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
+  </div>
+  <div class="client-title mt-4">
+    <h5 class="text-start ms-2">Clients</h5>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6 col-sm-12">
+      <div class="input-group my-3">
+        <span class="input-group-text" id="name"><i class="fa-solid
+            fa-magnifying-glass"></i></span>
+        <input type="search" class="form-control input-search" style="outline:
+          none" placeholder="Search ..." aria-describedby="name" />
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-12 text-end">
+    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addClient">Create Client<i class="fa-solid fa-users ms-1"></i></button>
+    </div>
+  </div>
+
+  <div *ngIf="clients.length == 0"  class="d-flex justify-content-center align-content-center mt-5 flex-column">
+    <div class="d-flex justify-content-center align-content-center">
+      <img src="assets/images/users-avatar.png"  width="350">
+    </div>
+    <h4 class="text-center my-5">No Clients!</h4>
+  </div>
+
+  <div *ngIf="clients.length > 0" class="brands table-responsive text-center mt-2">
+    <table class="table table-hover table-brand">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Manger Name</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients; let i= index"
+          style="vertical-align: middle;">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ client.name }}</td>
+          <td>{{ client.mangerName }}</td>
+          <td>{{ client.phone }}</td>
+          <td>
+            <button class="btn btn-outline-info me-1 btn-edit-brand" >
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-delete-brand" >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+
+<!-- add client -->
+
+<div class="modal fade" id="addClient" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Client </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addClientForm">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Client Name</span>
+                <input type="text"  class="form-control" placeholder="Client Name" formControlName="name" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Manger Name</span>
+                <input type="text"  class="form-control" placeholder="Manger" formControlName="mangerName"
+                   />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Email</span>
+                <input type="email"  class="form-control" placeholder="Email" formControlName="email"
+                   />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Mobile 1</span>
+                <input type="text"  class="form-control" placeholder="Mobile 1" formControlName="mobile1"
+                   />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Mobile 2</span>
+                <input type="text"  class="form-control" placeholder="Mobile 2" formControlName="mobile2"
+                   />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Phone</span>
+                <input type="text"  class="form-control" placeholder="Phone" formControlName="phone"
+                   />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Tax Record Number</span>
+                <input type="number"  class="form-control" placeholder="Tax Record Number" formControlName="taxRecordNumber"
+                   />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Trade Record Number</span>
+                <input type="number"  class="form-control" placeholder="Trade Record Number" formControlName="tradeRecordNumber"
+                   />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Tax Record Image</span>
+                <input type="file"  class="form-control" (change)="onPickImageTax($event)" placeholder="Trade Record Image" formControlName="taxRecordImage"
+                   />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Trade Record Image</span>
+                <input type="file"  class="form-control" (change)="onPickImageTrade($event)" placeholder="Trade Record Image" formControlName="tradeRecordImage"
+                   />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Fax</span>
+                <input type="text"  class="form-control" placeholder="Fax" formControlName="fax"
+                   />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Password</span>
+                <input type="password"  class="form-control" placeholder="Password" formControlName="password"
+                   />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Governorate</span>
+                <select required class="form-select" (change)="onAddSelectGover($event)" formControlName="governorate" aria-label="Default select example">
+                  <option disabled selected>Select Governorate</option>
+                  <option  *ngFor="let gover of governorate; let i = index" [value]="gover.id">{{ gover.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">DistrictId</span>
+                <select required class="form-select" (change)="onAddSelectDistr($event)" formControlName="districtId" aria-label="Default select example">
+                  <option disabled selected>Select DistrictId</option>
+                  <option  *ngFor="let distr of districtId; let i = index" [value]="distr.id">{{ distr.name }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Address</span>
+                <input type="text"  class="form-control" placeholder="Address" formControlName="address"
+                   />
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <button type="button" (click)="addClient()" class="btn btn-outline-primary">
+          <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

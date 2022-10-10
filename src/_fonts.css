@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Cairo";
+  src: url("assets/fonts/Cairo-VariableFont_wght.woff2") format("woff2"), url("assets/fonts/Cairo-VariableFont_wght.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face{
+  font-family: "Lobster";
+  src: url("assets/fonts/Lobster-Regular.woff2") format("woff2"), url("assets/fonts/Lobster-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

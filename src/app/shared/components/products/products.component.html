@@ -1,0 +1,130 @@
+<section class="container">
+  <div class="arrow-back" style="margin-top: 20px;">
+    <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"
+      ><i class="fa-solid fa-arrow-left fs-3"></i
+    ></a>
+  </div>
+<div class="product-title mt-4">
+  <h5 class="text-start ms-2">Categories</h5>
+</div>
+<div class="addCategory text-end">
+  <button class="btn btn-outline-secondary btn-add-product" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add Category <i class="fa-regular fa-square-plus"></i></button>
+</div>
+<div class="product table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Sub Categories</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products; let i = index" style="vertical-align: middle;">
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ product.name }}</td>
+        <td>
+          <a [routerLink]="['../brands/', product.id]" class="btn btn-outline-primary btn-view-product">View Brands <i class="fa-regular fa-eye"></i></a>
+        </td>
+        <td>
+          <button class="btn btn-outline-info me-1 btn-edit-product" (click)="getProduct(product.id)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-regular fa-pen-to-square"></i></button>
+          <button class="btn btn-outline-danger btn-delete-product" (click)="deleteCategory(product.id)"><i class="fa-solid fa-trash-can"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- edit modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="productForm">
+       <div class="img text-center">
+        <div>
+          <img [src]="apiSrc + '/' + productForm.get('imageUrl').value" width="200" alt="upload img">
+        </div>
+        <div class="my-3">
+          <input class="form-control" type="file" (change)="onPickImage($event)" >
+        </div>
+       </div>
+       <div class="input-group my-3">
+        <span class="input-group-text" id="name">Name</span>
+        <input type="text" class="form-control" formControlName="name" placeholder="category name" aria-describedby="category name">
+
+      </div>
+      <div *ngIf="
+          productFormValidate['name'].invalid &&
+          (productFormValidate['name'].dirty ||
+            productFormValidate['name'].touched)
+        ">
+                        <small class="text-black" *ngIf="productFormValidate['name'].errors?.['required']">
+                            name required
+                        </small>
+                    </div>
+      <div class="input-group my-3">
+        <span class="input-group-text" id="name">Description</span>
+        <input type="text" class="form-control" formControlName="description" placeholder="description" aria-describedby="description">
+
+      </div>
+      <div *ngIf="
+      productFormValidate['description'].invalid &&
+      (productFormValidate['description'].dirty ||
+        productFormValidate['description'].touched)
+    ">
+                    <small class="text-black" *ngIf="productFormValidate['description'].errors?.['required']">
+                      description required
+                    </small>
+                </div>
+
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></button>
+        <button type="button" class="btn btn-outline-info" (click)="updateProduct()"><i class="fa-solid fa-pencil"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add category modal -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addProductForm">
+          <div class="img text-center">
+           <div class="my-3">
+             <input class="form-control" type="file" (change)="onPickAddImage($event)" >
+           </div>
+          </div>
+          <div class="input-group my-3">
+           <span class="input-group-text" id="name">Name</span>
+           <input type="text" class="form-control" formControlName="name" placeholder="category name" aria-describedby="category name">
+         </div>
+         <div class="input-group my-3">
+           <span class="input-group-text" id="name">Description</span>
+           <input type="text" class="form-control" formControlName="description" placeholder="description" aria-describedby="description">
+         </div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="fa-regular fa-circle-xmark"></i></button>
+        <button type="button" class="btn btn-outline-secondary" (click)="addCategory()"><i class="fa-solid fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<section class="container" style="height: 100vh">
+  <div class="arrow-back" style="margin-top: 20px">
+    <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
+  </div>
+  <div class="brands-title mt-4">
+    <h5 class="text-start ms-2">{{ productName }}</h5>
+  </div>
+  <div class="search w-75 m-auto my-5">
+    <div class="input-group my-3">
+      <span class="input-group-text" id="name"><i class="fa-solid
+          fa-magnifying-glass"></i></span>
+      <input type="search" class="form-control input-search" style="outline: none" placeholder="Search" aria-describedby="name" />
+    </div>
+    <div class="text-end">
+      <button class="btn btn-outline-primary text-end btn-add-brand" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Create Brand in {{ productName }}
+        <i class="fa-regular fa-lightbulb"></i>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="brands.length <0" class="no-brands m-auto text-center">
+    <div class="d-flex justify-content-center align-content-center">
+      <img src="assets/images/paper.png" width="200" alt="no brands" />
+    </div>
+    <p>No Results Could Be Found</p>
+  </div>
+  <div *ngIf="brands.length> 0" class="brands table-responsive">
+    <table class="table table-hover table-brand">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">View</th>
+          <th scope="col">Image</th>
+          <th scope="col">Operations</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let brand of brands; let i= index" style="vertical-align: middle; cursor: pointer;">
+          <th  data-bs-toggle="modal" data-bs-target="#viewImage" (click)="viewImage(brand.imageUrl)"  scope="row" >{{ i + 1 }}</th>
+          <td  data-bs-toggle="modal" data-bs-target="#viewImage" (click)="viewImage(brand.imageUrl)" >{{ brand.name }}</td>
+          <td  data-bs-toggle="modal" data-bs-target="#viewImage" (click)="viewImage(brand.imageUrl)" >
+            {{ brand.description }}
+          </td>
+          <td>
+            <a routerLink="items" class="btn btn-outline-primary">
+              View Product
+              <i class="fa-regular fa-eye"></i>
+            </a>
+          </td>
+          <td  data-bs-toggle="modal" data-bs-target="#viewImage" (click)="viewImage(brand.imageUrl)" ><img [src]="apiSrc + '/' + brand.imageUrl" width="60" height="60"  alt="img"></td>
+          <td>
+            <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getBrand(brand.id)" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteBrand(brand.id)">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- add brand modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Brand</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="brandForm">
+          <input type="text" formControlName="categoryId" [(ngModel)]="idProduct" hidden />
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Name</span>
+            <input type="text" class="form-control" placeholder="name" formControlName="name" aria-label="name"
+              aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Description</span>
+            <input type="text" class="form-control" placeholder="description" formControlName="description"
+              aria-label="description" aria-describedby="basic-addon2" />
+          </div>
+          <div class="input-group mb-3">
+            <!-- <span class="input-group-text" id="basic-addon3">Image</span> -->
+            <input type="file" class="form-control" (change)="onPickImage($event)" placeholder="file" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <button type="button" class="btn btn-outline-primary" (click)="addBrand()">
+          <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edit brand modal -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Brand</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="brandForm">
+          <div class="text-center mb-2" *ngIf="brandForm.get('file').value.length < 0">
+            <img src="assets/images/image.png" width="200" alt="image">
+          </div>
+
+          <div *ngIf="brandForm.get('file').value.length > 0" class="text-center mb-2">
+            <img [src]="apiSrc + '/' + brandForm.get('file').value" width="200" alt="upload img">
+          </div>
+          <input type="text" formControlName="categoryId" [(ngModel)]="idProduct" hidden />
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Name</span>
+            <input type="text" class="form-control" placeholder="name" formControlName="name" aria-label="name"
+              aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">Description</span>
+            <input type="text" class="form-control" placeholder="description" formControlName="description"
+              aria-label="description" aria-describedby="basic-addon2" />
+          </div>
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" (change)="onPickUpdateImage($event)" />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+        <button type="button" class="btn btn-outline-info" (click)="updateBrand()">
+          <i class="fa-regular fa-pen-to-square"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- view image modal -->
+
+<div class="modal fade" id="viewImage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">View Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center align-content-center">
+          <img [src]="apiSrc + '/' + imageUrl"  width="100%"  alt="img">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

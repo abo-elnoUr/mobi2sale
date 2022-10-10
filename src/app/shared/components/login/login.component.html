@@ -1,0 +1,55 @@
+  <section id="log-form">
+  <div class="cont row">
+    <div class="description-content col-md-6 col-sm-12">
+      <div class="form-content">
+        <h4 class="">Welcome To MOBI2SALE</h4>
+        <p>
+          Lorem Ipsum Is Simply Dummy Text Of The Printing And Typesetting
+          Industry. Lorem Ipsum Has Been The Industry's Standard Dummy Text Ever
+          Since
+        </p>
+      </div>
+    </div>
+    <div class="login-form col-md-6  col-sm-12">
+      <form [formGroup]="loginForm" style="width: 90%">
+        <h4 class="text-center">Signin</h4>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" formControlName="username" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+          <div *ngIf="
+            loginFormValidate['username'].invalid &&
+            (loginFormValidate['username'].dirty ||
+              loginFormValidate['username'].touched)
+          ">
+                <small class="text-black text-muted mb-1" *ngIf="loginFormValidate['username'].errors?.['required']">
+                    email required
+                </small>
+            </div>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" formControlName="password" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+          <div *ngIf="
+            loginFormValidate['password'].invalid &&
+            (loginFormValidate['password'].dirty ||
+              loginFormValidate['password'].touched)
+          ">
+                <small class="text-black text-muted mb-1" *ngIf="loginFormValidate['password'].errors?.['required']">
+                    password required
+                </small>
+                <small class="text-black text-muted mb-1" *ngIf="loginFormValidate['password'].errors?.['minlength']">
+                    password must br more than 6 chars
+                </small>
+            </div>
+        </div>
+        <input type="text" formControlName="applicationName"  hidden>
+        <div class="login-btn text-center pt-3">
+          <button [disabled]="!loginForm.valid" (click)="onLogin()" class="btn px-5 text-end m-auto">
+            Login <i class="fa-solid fa-right-to-bracket"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
