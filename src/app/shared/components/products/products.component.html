@@ -10,7 +10,13 @@
 <div class="addCategory text-end">
   <button class="btn btn-outline-secondary btn-add-product" data-bs-toggle="modal" data-bs-target="#exampleModal2">Add Category <i class="fa-regular fa-square-plus"></i></button>
 </div>
-<div class="product table-responsive">
+<div *ngIf="products.length == 0" class="no-brands m-auto text-center">
+  <div class="d-flex justify-content-center align-content-center my-5">
+      <img src="assets/images/category.png" width="200" alt="no brands" />
+  </div>
+  <p class="mt-2">No Category Here 🙃</p>
+</div>
+<div *ngIf="products.length > 0" class="product table-responsive">
   <table class="table table-hover">
     <thead>
       <tr>

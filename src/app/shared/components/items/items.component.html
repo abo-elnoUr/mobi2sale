@@ -4,20 +4,20 @@
                 class="fa-solid fa-arrow-left fs-3"></i></a>
     </div>
     <div class="items-title mt-4">
-        <h5 class="text-start ms-2">{{ 'Products' }}</h5>
+        <h5 class="text-start ms-2">{{ 'Products in' + ' ' + '"' + brandName + '"' }}</h5>
     </div>
     <div class="search row my-5">
         <div class="col-md-6 col-sm-12">
             <div class="input-group my-3">
                 <span class="input-group-text" id="name"><i class="fa-solid
         fa-magnifying-glass"></i></span>
-                <input type="search" class="form-control input-search" style="outline: none" placeholder="Search" aria-describedby="name" />
+                <input type="search" (keyup)="onSearch($event); getItemsByText()" class="form-control input-search" style="outline: none" placeholder="Search" aria-describedby="name" />
             </div>
         </div>
         <div class="col-md-6 col-sm-12">
             <div class="text-end">
                 <button class="btn btn-outline-primary text-end btn-add-brand" data-bs-toggle="modal" data-bs-target="#addItem">
-                    Create Product
+                    Create Product in {{ brandName }}
                     <i class="fa-solid fa-inbox"></i>
                 </button>
             </div>
@@ -52,10 +52,10 @@
                         <span [ngStyle]="{background: item.color, color: item.color}" class="spanColor rounded p-1">Color</span>
                     </td>
                     <td>
-                        <button class="btn btn-outline-info me-1 btn-edit-brand" data-bs-toggle="modal" data-bs-target="#editItem">
+                        <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getproduct(item.id)" data-bs-toggle="modal" data-bs-target="#editItem">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </button>
-                        <button class="btn btn-outline-danger btn-delete-brand">
+                        <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteProduct(item.id)">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
@@ -129,4 +129,74 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- edit item modal -->
+
+<div class="modal fade" id="editItem" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="editItemForm">
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">Name</span>
+                      <input type="text" class="form-control" placeholder="name" formControlName="name" aria-label="name" aria-describedby="basic-addon1" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Description</span>
+                      <input type="text" class="form-control" placeholder="description" formControlName="description" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Buying Price</span>
+                      <input type="number" class="form-control" placeholder="supply Price" formControlName="supplyPrice" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Retail Price</span>
+                      <input type="number" class="form-control" placeholder="retail Price" formControlName="retailPrice" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Wholesale Price</span>
+                      <input type="number" class="form-control" placeholder="wholesale Price" formControlName="wholesalePrice" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Color</span>
+                      <input type="color" class="form-control" placeholder="Color" formControlName="color" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Code</span>
+                      <input type="text" class="form-control" placeholder="Code" formControlName="code" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Quantity</span>
+                      <input type="number" class="form-control" placeholder="quantity" formControlName="quantity" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Safe Limit</span>
+                      <input type="number" class="form-control" placeholder="SafeLimit" formControlName="safeLimit" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Main Image</span>
+                      <input type="file" class="form-control" (change)="onPickMainImage($event)" placeholder="main image" formControlName="mainImage" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Cover Image</span>
+                      <input type="file" class="form-control" (change)="onPickCoverImage($event)" placeholder="cover image" formControlName="coverImage" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                  <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+              <button type="button" class="btn btn-outline-primary" (click)="editItem()">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+          </div>
+      </div>
+  </div>
 </div>

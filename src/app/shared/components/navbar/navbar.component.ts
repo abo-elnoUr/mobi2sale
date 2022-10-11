@@ -33,8 +33,9 @@ export class NavbarComponent implements OnInit {
       this._ProductService.isLogin = false
       this._ProductService.showNav = false
       window.location.reload()
-      localStorage.removeItem('id')
+      localStorage.removeItem('idUser')
       localStorage.removeItem('token')
+      localStorage.removeItem('loginUser')
       this._Router.navigate(['login'])
   }
 }

@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
       this._ToastrService.success('login succesfully💛')
       this._ProductService.isLogin = true
       localStorage.setItem('token', login.token)
-      localStorage.setItem('id', login.id)
+      localStorage.setItem('idUser', login.id)
+      localStorage.setItem('loginUser', login.userName)
       this._Router.navigate([''])
       this.loginForm.reset()
       this._ProductService.showNav = true

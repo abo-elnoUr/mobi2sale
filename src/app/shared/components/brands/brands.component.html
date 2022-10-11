@@ -4,14 +4,14 @@
                 class="fa-solid fa-arrow-left fs-3"></i></a>
     </div>
     <div class="brands-title mt-4">
-        <h5 class="text-start ms-2">{{ 'Brand' + ' ' + '"' + productName + '"' }}</h5>
+        <h5 class="text-start ms-2">{{ 'Brands in' + ' ' + '"' + productName + '"' }}</h5>
     </div>
     <div class="search row my-5">
         <div class="col-md-6 col-sm-12">
             <div class="input-group my-3">
                 <span class="input-group-text" id="name"><i class="fa-solid
         fa-magnifying-glass"></i></span>
-                <input type="search" class="form-control input-search" style="outline: none" placeholder="Search" aria-describedby="name" />
+                <input type="search" (keyup)="onSearch($event); getBrandsWithPagination()" class="form-control input-search" style="outline: none" placeholder="Search" aria-describedby="name" />
             </div>
         </div>
         <div class="col-md-6 col-sm-12">

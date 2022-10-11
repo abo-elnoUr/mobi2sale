@@ -19,6 +19,7 @@ export class BrandsComponent implements OnInit {
   idBrand: any = null
   apiSrc = 'http://algosys-001-site8.ctempurl.com'
   imageUrl: any = ''
+  searchText: string = ''
 
 
 
@@ -44,7 +45,6 @@ export class BrandsComponent implements OnInit {
   }
 
   // get product with id
-
   getProduct(id: any) {
     this._ProductService.getOneCategory(id).subscribe((product) => {
       this.idProduct = product.id;
@@ -64,6 +64,19 @@ export class BrandsComponent implements OnInit {
     this.idProduct = this._ActivatedRoute.snapshot.params['id'];
     this._ProductService.getBrands(this.idProduct).subscribe((brands) => {
       this.brands = brands
+    })
+  }
+
+  // search in brands
+  onSearch(event: any){
+    const text = event.target.value
+    this.searchText = text
+  }
+
+  // get brands with pagination
+  getBrandsWithPagination(){
+    this._ProductService.getBrandsWithPagination(this.idProduct, this.searchText).subscribe((brands) => {
+      this.brands = brands.data
     })
   }
 

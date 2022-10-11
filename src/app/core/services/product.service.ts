@@ -70,6 +70,11 @@ export class ProductService {
     return this._HttpClient.get(this.apiUrl + `Subcategory/GetSubcategories/${idProduct}`)
   }
 
+  // get all brands with pagination
+  getBrandsWithPagination(idProduct: string, searchText: string): Observable<any> {
+    return this._HttpClient.post(this.apiUrl + `Subcategory/GetSubcategories/${idProduct}`, {searchText})
+  }
+
   // update brand
   updateBrand(brand: any, id: any) {
     return this._HttpClient.put(this.apiUrl + `Subcategory/${id}`, brand)
@@ -87,8 +92,28 @@ export class ProductService {
     return this._HttpClient.post<Item>(this.apiUrl + 'Item', item)
   }
 
-  // get all items with pagination
+  // get all items without pagination
   getAllItems(subcatId: string): Observable<any> {
-    return this._HttpClient.post<any>(this.apiUrl + `Item/GetItems/${subcatId}`, {})
+    return this._HttpClient.get<any>(this.apiUrl + `Item/GetAllItems/${subcatId}`)
+  }
+
+  // get all items with pagination
+  getAllItemsWithSearch(subcatId: string, searchText: string): Observable<any> {
+    return this._HttpClient.post<any>(this.apiUrl + `Item/GetItems/${subcatId}`, {searchText})
+  }
+
+  // get one item
+  getOneItem(id: string) : Observable<Item>{
+    return this._HttpClient.get<Item>(this.apiUrl + `Item/${id}`)
+  }
+
+  // edit item
+  updateItem(item: any, id: string) :Observable<Item>{
+    return this._HttpClient.put<Item>(this.apiUrl + `Item/${id}`, item)
+  }
+
+  // delete item
+  deleteItem(id: string) :Observable<Item>{
+    return this._HttpClient.delete<Item>(this.apiUrl + `Item/${id}`)
   }
 }
