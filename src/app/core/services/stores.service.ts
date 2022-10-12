@@ -25,12 +25,6 @@ export class StoresService {
     return this._HttpClient.get<Employee[]>(this.apiUrl + 'Employee')
   }
 
-  // ************************************ supplier ************************************
-
-  // get all suppliers
-  getSuppliers() :Observable<Supplier[]>{
-    return this._HttpClient.get<Supplier[]>(this.apiUrl + 'Supplier')
-  }
 
   // ************************************ subDepartment ( stores ) ************************************
 
@@ -80,9 +74,44 @@ export class StoresService {
   }
 
   // get all addition voucher
-  getAdditionVouchers() :Observable<AdditionVoucher[]>{
-    return this._HttpClient.post<AdditionVoucher[]>(this.apiUrl + 'AdditionVoucher/Vouchers', {})
+  getAdditionVouchers() :Observable<any>{
+    return this._HttpClient.post<AdditionVoucher>(this.apiUrl + 'AdditionVoucher/Vouchers', {})
   }
 
+  // ************************************ Supplier ************************************
 
+  // get country
+  getCountry() :Observable<any>{
+    return this._HttpClient.get(this.apiUrl + 'Country')
+  }
+
+  // get all suppliers
+  getSuppliers() :Observable<Supplier[]>{
+    return this._HttpClient.get<Supplier[]>(this.apiUrl + 'Supplier')
+  }
+
+  // get one supplier
+  getOneSupplier(id: string) :Observable<Supplier>{
+    return this._HttpClient.get<Supplier>(this.apiUrl + `Supplier/${id}`)
+  }
+
+  // add supplier
+  addSupplier(supplier: any) :Observable<Supplier>{
+    return this._HttpClient.post<Supplier>(this.apiUrl + 'Supplier', supplier)
+  }
+
+  // edit supplier form
+  updateSupplier(supplier: any, id: string) :Observable<Supplier>{
+    return this._HttpClient.put<Supplier>(this.apiUrl + `Supplier/${id}`, supplier)
+  }
+
+  // delete supplier
+  deleteSupplier(id :string) :Observable<Supplier> {
+    return this._HttpClient.delete<Supplier>(this.apiUrl + `Supplier/${id}`)
+  }
+
+  // get supplier reports
+  getReports(report: any) :Observable<any>{
+    return this._HttpClient.post(this.apiUrl + 'Report/SupplierAccountReport', report)
+  }
 }

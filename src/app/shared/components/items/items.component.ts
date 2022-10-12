@@ -107,12 +107,12 @@ export class ItemsComponent implements OnInit {
 
   // add product
   onPickMainImage(event: any) {
-    var imgFile = event.target.files[0]
+    const imgFile = event.target.files[0]
     this.addItemForm.get('mainImage').setValue(imgFile)
   }
 
   onPickCoverImage(event: any) {
-    var imgFil = event.target.files[0]
+    const imgFil = event.target.files[0]
     this.addItemForm.get('coverImage').setValue(imgFil)
   }
 

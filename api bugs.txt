@@ -1,2 +1,5 @@
 [clients](add client) mangername
 [Addition Voucher] (add addition voucher)
+[Suppliers] (error while delete)
+[Suppliers] (error while update in mobile format remove '+')
+[Suppliers] (error while update in images)

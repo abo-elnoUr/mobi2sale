@@ -1,15 +1,53 @@
 
 @import "../../_fonts.css";
 
-.dashboard{
+/* .dashboard{
   position: absolute;
   top: 50%;
   left: 50%;
   display: flex;
   transform: translate(-50%, -50%);
+} */
+.dashboard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(59, 228, 36);
+  background-image: gradient(100deg, rgb(230, 241, 202) 0%, rgb(197, 219, 0) 100%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+::selection {
+  background: transparent;
+}
+/* CLOUDS */
+.dashboard:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  margin: auto;
+  border-radius: 100%;
+  background: transparent;
+  display: block;
+
+  box-shadow: 0 0 150px 100px rgba(255, 255, 255, .6),
+              200px 0 200px 150px rgba(255, 255, 255, .6),
+              -250px 0 300px 150px rgba(255, 255, 255, .6),
+              550px 0 300px 200px rgba(255, 255, 255, .6),
+              -550px 0 300px 200px rgba(255, 255, 255, .6);
 }
 
-.dashboard h1 {
+
+h1 {
   text-align: center;
   font-family: Lobster !important;
   font-weight: 300;
@@ -18,4 +56,35 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
+  align-content: center;
+  animation: bounce .3s ease infinite alternate;
+  font-size: 80px;
+  color: #FFF;
+  text-shadow: 0 1px 0 #CCC,
+               0 2px 0 #CCC,
+               0 3px 0 #CCC,
+               0 4px 0 #CCC,
+               0 5px 0 #CCC,
+               0 6px 0 transparent,
+               0 7px 0 transparent,
+               0 8px 0 transparent,
+               0 9px 0 transparent,
+               0 10px 10px rgba(0, 0, 0, .6);
+}
+/* ANIMATION */
+@keyframes bounce {
+  100% {
+    top: -30px;
+
+    text-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 30px 30px rgba(0, 0, 0, .3);
+  }
 }

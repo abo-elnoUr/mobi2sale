@@ -64,7 +64,7 @@ export class AdditionVoucherComponent implements OnInit {
   // get addition voucher
   getAdditionVoucher(){
     this._StoresService.getAdditionVouchers().subscribe((addition) => {
-      this.additionVoucher = addition
+      this.additionVoucher = addition.data
     })
   }
 
