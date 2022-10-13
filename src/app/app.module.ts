@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardInterceptor } from './shared/interceptors/dashboard.interceptor';
+import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ProductsComponent } from './shared/components/products/products.component';
 import { ItemsComponent } from './shared/components/items/items.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 
 
@@ -27,7 +29,8 @@ import { ItemsComponent } from './shared/components/items/items.component';
     NavbarComponent,
     NotFoundComponent,
     ProductsComponent,
-    ItemsComponent
+    ItemsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,11 @@ import { ItemsComponent } from './shared/components/items/items.component';
       provide: HTTP_INTERCEPTORS,
       useClass: DashboardInterceptor,
       multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
     }
   ],
   bootstrap: [AppComponent]

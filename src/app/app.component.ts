@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ProductService } from './core/services/product.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +7,9 @@ import { ProductService } from './core/services/product.service';
 })
 export class AppComponent {
   title = 'dashboard';
-  showNav: boolean = false
 
-  constructor(private _ProductService: ProductService){
-    const token = localStorage.getItem('token')
-    if(token){
-      this._ProductService.showNav = true
-      this.showNav = this._ProductService.showNav
-    }
-  }
+
+  constructor() { }
 }
 
 

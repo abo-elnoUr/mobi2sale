@@ -1,5 +1,6 @@
-export interface Employee{
+export interface Employee {
   id: string;
+  departmentId: string;
   firstName: string;
   lastName: string;
   dateOfBrith: string;
@@ -10,14 +11,8 @@ export interface Employee{
   image: string;
   visaNumber: string;
   visaImage: string;
-  district: string;
-  governorate: string;
-  street: number;
-  departments: [
-    {
-      id: string,
-      name: string,
-      selected: boolean
-    }
-  ]
+  districtID: string;
+  street: string;
+  password: number;
+
 }

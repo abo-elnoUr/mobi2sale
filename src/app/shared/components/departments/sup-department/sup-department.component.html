@@ -1,135 +1,132 @@
 <section class="container" style="height: 100vh">
-  <div class="arrow-back" style="margin-top: 20px">
-    <a style="cursor: pointer; text-decoration: none"
-      onclick="history.back(-1)"><i
+    <div class="arrow-back" style="margin-top: 20px">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
         class="fa-solid fa-arrow-left fs-3"></i></a>
-  </div>
-  <div class="sub_department-title mt-4">
-    <h5 class="text-start ms-2">SubDepartments</h5>
-  </div>
+    </div>
+    <div class="sub_department-title mt-4">
+        <h5 class="text-start ms-2">SubDepartments</h5>
+    </div>
 
-  <div class="addSubDepartment mt-3 text-end me-2">
-    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addSubDepartment">Create SubDepartment<i class="fa-solid fa-diagram-predecessor ms-1"></i></button>
-  </div>
+    <div class="addSubDepartment mt-3 text-end me-2">
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addSubDepartment">Create
+      SubDepartment<i class="fa-solid fa-diagram-predecessor ms-1"></i></button>
+    </div>
 
-  <div class="search row mx-1">
-    <div class="col-md-6"><div class="my-3 w-100 mx-1">
-        <select #departmentId (change)="onSelectDepartmentId($event); getSupdepartmentById()" class="form-select" aria-label="Default select example">
+    <div class="search row mx-1">
+        <div class="col-md-6">
+            <div class="my-3 w-100 mx-1">
+                <select #departmentId (change)="onSelectDepartmentId($event); getSupdepartmentById()" class="form-select" aria-label="Default select example">
           <option selected disabled>Choose Department</option>
           <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
         </select>
-      </div>
-    </div>
-    <div class="col-md-6" *ngIf="depId">
-      <div class="input-group my-3">
-        <span class="input-group-text" id="name"><i class="fa-solid
+            </div>
+        </div>
+        <div class="col-md-6" *ngIf="depId">
+            <div class="input-group my-3">
+                <span class="input-group-text" id="name"><i class="fa-solid
             fa-magnifying-glass"></i></span>
-        <input type="search" (keyup)="onSearch($event); getSupdepartmentByText()" class="form-control input-search" style="outline:
+                <input type="search" (keyup)="onSearch($event); getSupdepartmentByText()" class="form-control input-search" style="outline:
           none" placeholder="Search by name" aria-describedby="name" />
-      </div>
+            </div>
+        </div>
+
+
+
     </div>
 
-
-
-  </div>
-
-  <div *ngIf="sup_departments.length == 0" class="d-flex justify-content-center
-    align-content-center mt-5 flex-column">
-    <h4 class="text-center my-5">No subDepartments! Please Select From Departments ☝</h4>
-    <div class="d-flex justify-content-center align-content-center">
-      <img src="assets/images/no_department.svg" width="350">
+    <div *ngIf="sup_departments.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/forms/department.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No SubDepartments!</h4>
     </div>
-  </div>
 
-  <div *ngIf="sup_departments.length> 0" class="brands table-responsive text-center">
-    <table class="table table-hover table-brand">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Is Store</th>
-          <th scope="col">Operations</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let sup_department of sup_departments; let i= index"
-          style="vertical-align: middle;">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ sup_department.name }}</td>
-          <td>
-            <span *ngIf="sup_department.isStore == true" class="badge bg-warning">{{ sup_department.isStore }}</span>
-            <span *ngIf="sup_department.isStore == false" class="badge bg-danger">{{ sup_department.isStore }}</span>
-          </td>
-          <td>
-            <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getSubDepartmentById(sup_department.id)" data-bs-toggle="modal" data-bs-target="#editSubDepartment">
+    <div *ngIf="sup_departments.length> 0" class="brands table-responsive text-center">
+        <table class="table table-hover table-brand">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Is Store</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sup_department of sup_departments; let i= index" style="vertical-align: middle;">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ sup_department.name }}</td>
+                    <td>
+                        <span *ngIf="sup_department.isStore == true" class="badge bg-warning">{{ sup_department.isStore }}</span>
+                        <span *ngIf="sup_department.isStore == false" class="badge bg-danger">{{ sup_department.isStore }}</span>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getSubDepartmentById(sup_department.id)" data-bs-toggle="modal" data-bs-target="#editSubDepartment">
               <i class="fa-regular fa-pen-to-square"></i>
             </button>
-            <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteSupDepartment(sup_department.id)">
+                        <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteSupDepartment(sup_department.id)">
               <i class="fa-solid fa-trash-can"></i>
             </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <!-- add subdepartment -->
 
 <div class="modal fade" id="addSubDepartment" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add SubDepartment </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="addSubDepartmentForm">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Name</span>
-            <input type="text" required="" class="form-control" placeholder="name" formControlName="name" aria-label="name"
-              aria-describedby="basic-addon1" />
-          </div>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add SubDepartment </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addSubDepartmentForm">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Name</span>
+                        <input type="text" required="" class="form-control" placeholder="name" formControlName="name" aria-label="name" aria-describedby="basic-addon1" />
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Phone</span>
-            <input type="text" required="" class="form-control" placeholder="phone" formControlName="phone"
-              aria-label="phone" aria-describedby="basic-addon2" />
-          </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Phone</span>
+                        <input type="text" required="" class="form-control" placeholder="phone" formControlName="phone" aria-label="phone" aria-describedby="basic-addon2" />
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Manger</span>
-            <select #mgrId required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="managerID" aria-label="Default select example">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Manger</span>
+                        <select #mgrId required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="managerID" aria-label="Default select example">
               <option disabled selected>Select Manger</option>
-              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}</option>
+              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}
+              </option>
             </select>
-          </div>
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Department</span>
-            <select #departId required (change)="onEditSelectDepId($event)" class="form-select" formControlName="departmentID" aria-label="Default select example">
-              <option disabled selected >Select Department</option>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Department</span>
+                        <select #departId required (change)="onEditSelectDepId($event)" class="form-select" formControlName="departmentID" aria-label="Default select example">
+              <option disabled selected>Select Department</option>
               <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
             </select>
-          </div>
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Description</span>
-            <input type="text" required="" class="form-control" placeholder="description" formControlName="description"
-              aria-label="description" aria-describedby="basic-addon2" />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Description</span>
+                        <input type="text" required="" class="form-control" placeholder="description" formControlName="description" aria-label="description" aria-describedby="basic-addon2" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
           <i class="fa-regular fa-circle-xmark"></i>
         </button>
-        <button type="button"  class="btn btn-outline-primary" (click)="addSubDepartment()">
+                <button type="button" class="btn btn-outline-primary" (click)="addSubDepartment()">
           <i class="fa-regular fa-floppy-disk"></i>
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -137,58 +134,55 @@
 <!-- edit subdepartment -->
 
 <div class="modal fade" id="editSubDepartment" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit SubDepartment </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="editSubDepartmentForm">
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">Name</span>
-            <input type="text" required="" class="form-control" placeholder="name" formControlName="name" aria-label="name"
-              aria-describedby="basic-addon1" />
-          </div>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit SubDepartment </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editSubDepartmentForm">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Name</span>
+                        <input type="text" required="" class="form-control" placeholder="name" formControlName="name" aria-label="name" aria-describedby="basic-addon1" />
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Phone</span>
-            <input type="text" required="" class="form-control" placeholder="phone" formControlName="phone"
-              aria-label="phone" aria-describedby="basic-addon2" />
-          </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Phone</span>
+                        <input type="text" required="" class="form-control" placeholder="phone" formControlName="phone" aria-label="phone" aria-describedby="basic-addon2" />
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Manger</span>
-            <select #mgrId required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="managerID" aria-label="Default select example">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Manger</span>
+                        <select #mgrId required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="managerID" aria-label="Default select example">
               <option disabled>Select Manger</option>
-              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}</option>
+              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}
+              </option>
             </select>
-          </div>
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Department</span>
-            <select #departId required (change)="onEditSelectDepId($event)" class="form-select" formControlName="departmentID" aria-label="Default select example">
-              <option disabled >Select Department</option>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Department</span>
+                        <select #departId required (change)="onEditSelectDepId($event)" class="form-select" formControlName="departmentID" aria-label="Default select example">
+              <option disabled>Select Department</option>
               <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
             </select>
-          </div>
+                    </div>
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon2">Description</span>
-            <input type="text" required="" class="form-control" placeholder="description" formControlName="description"
-              aria-label="description" aria-describedby="basic-addon2" />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Description</span>
+                        <input type="text" required="" class="form-control" placeholder="description" formControlName="description" aria-label="description" aria-describedby="basic-addon2" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
           <i class="fa-regular fa-circle-xmark"></i>
         </button>
-        <button type="button"  class="btn btn-outline-info" (click)="editSubDepartment()">
+                <button type="button" class="btn btn-outline-info" (click)="editSubDepartment()">
           <i class="fa-regular fa-pen-to-square"></i>
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-

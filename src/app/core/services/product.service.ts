@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../shared/models/user';
 import { Product } from '../../shared/models/products';
-import { Brand } from '../../shared/models/brands';
 
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Item } from 'src/app/shared/models/item';
@@ -15,7 +14,12 @@ export class ProductService {
 
   apiUrl = "http://algosys-001-site8.ctempurl.com/api/V1/";
   isLogin: boolean = false
-  showNav: boolean = false
+  isShowNav = new BehaviorSubject<boolean>(true);
+
+  // show/hide navabr and sidebar
+  showHide(val: boolean) {
+    this.isShowNav.next(val)
+  }
 
   constructor(private _HttpClient: HttpClient) { }
 
@@ -72,7 +76,7 @@ export class ProductService {
 
   // get all brands with pagination
   getBrandsWithPagination(idProduct: string, searchText: string): Observable<any> {
-    return this._HttpClient.post(this.apiUrl + `Subcategory/GetSubcategories/${idProduct}`, {searchText})
+    return this._HttpClient.post(this.apiUrl + `Subcategory/GetSubcategories/${idProduct}`, { searchText })
   }
 
   // update brand
@@ -99,21 +103,21 @@ export class ProductService {
 
   // get all items with pagination
   getAllItemsWithSearch(subcatId: string, searchText: string): Observable<any> {
-    return this._HttpClient.post<any>(this.apiUrl + `Item/GetItems/${subcatId}`, {searchText})
+    return this._HttpClient.post<any>(this.apiUrl + `Item/GetItems/${subcatId}`, { searchText })
   }
 
   // get one item
-  getOneItem(id: string) : Observable<Item>{
+  getOneItem(id: string): Observable<Item> {
     return this._HttpClient.get<Item>(this.apiUrl + `Item/${id}`)
   }
 
   // edit item
-  updateItem(item: any, id: string) :Observable<Item>{
+  updateItem(item: any, id: string): Observable<Item> {
     return this._HttpClient.put<Item>(this.apiUrl + `Item/${id}`, item)
   }
 
   // delete item
-  deleteItem(id: string) :Observable<Item>{
+  deleteItem(id: string): Observable<Item> {
     return this._HttpClient.delete<Item>(this.apiUrl + `Item/${id}`)
   }
 }

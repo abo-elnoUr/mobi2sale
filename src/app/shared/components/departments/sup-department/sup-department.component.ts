@@ -30,7 +30,7 @@ export class SupDepartmentComponent implements OnInit {
   constructor(
     private _DepartmentsService: DepartmentsService,
     private _ToastrService: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.editSubDepartmentForm = new FormGroup({
@@ -105,23 +105,23 @@ export class SupDepartmentComponent implements OnInit {
   }
 
   // add subDepartment
-  addSubDepartment(){
+  addSubDepartment() {
     this._DepartmentsService.addSubDepartment(this.addSubDepartmentForm.value).subscribe((addSubdepartment) => {
       this._ToastrService.success('added 💛');
-          this.getDepartments();
-          this.getSupdepartmentById();
-          this.addSubDepartmentForm.reset();
+      this.getDepartments();
+      this.getSupdepartmentById();
+      this.addSubDepartmentForm.reset();
     },
-    (error) => {
-      switch (error.error.status) {
-        case 400:
-          for (const [key, value] of Object.entries(error.error.errors)) {
-            this._ToastrService.error(value as string);
-          }
-          break;
-      }
-    },
-    () => {})
+      (error) => {
+        switch (error.error.status) {
+          case 400:
+            for (const [key, value] of Object.entries(error.error.errors)) {
+              this._ToastrService.error(value as string);
+            }
+            break;
+        }
+      },
+      () => { })
   }
 
   // edit subDepartment
@@ -155,7 +155,7 @@ export class SupDepartmentComponent implements OnInit {
               break;
           }
         },
-        () => {}
+        () => { }
       );
   }
 
