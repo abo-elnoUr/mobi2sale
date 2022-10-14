@@ -11,6 +11,7 @@ import { BranchRefundComponent } from './branch-refund/branch-refund.component';
 import { DepartmentComponent } from './department/department.component';
 import { SupDepartmentComponent } from './sup-department/sup-department.component';
 import { BranchComponent } from './branch/branch.component';
+import { BranchRefundToStoreComponent } from './branch-refund-to-store/branch-refund-to-store.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { BranchComponent } from './branch/branch.component';
     BranchRefundComponent,
     DepartmentComponent,
     BranchComponent,
-    SupDepartmentComponent
+    SupDepartmentComponent,
+    BranchRefundToStoreComponent
   ],
   imports: [
 CommonModule,

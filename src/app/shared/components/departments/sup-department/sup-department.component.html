@@ -1,7 +1,7 @@
 <section class="container" style="height: 100vh">
     <div class="arrow-back" style="margin-top: 20px">
         <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
-        class="fa-solid fa-arrow-left fs-3"></i></a>
+                class="fa-solid fa-arrow-left fs-3"></i></a>
     </div>
     <div class="sub_department-title mt-4">
         <h5 class="text-start ms-2">SubDepartments</h5>
@@ -9,16 +9,16 @@
 
     <div class="addSubDepartment mt-3 text-end me-2">
         <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addSubDepartment">Create
-      SubDepartment<i class="fa-solid fa-diagram-predecessor ms-1"></i></button>
+            SubDepartment<i class="fa-solid fa-diagram-predecessor ms-1"></i></button>
     </div>
 
     <div class="search row mx-1">
         <div class="col-md-6">
             <div class="my-3 w-100 mx-1">
                 <select #departmentId (change)="onSelectDepartmentId($event); getSupdepartmentById()" class="form-select" aria-label="Default select example">
-          <option selected disabled>Choose Department</option>
-          <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
-        </select>
+                    <option selected disabled>Choose Department</option>
+                    <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
+                </select>
             </div>
         </div>
         <div class="col-md-6" *ngIf="depId">
@@ -56,16 +56,20 @@
                     <th scope="row">{{ i + 1 }}</th>
                     <td>{{ sup_department.name }}</td>
                     <td>
-                        <span *ngIf="sup_department.isStore == true" class="badge bg-warning">{{ sup_department.isStore }}</span>
-                        <span *ngIf="sup_department.isStore == false" class="badge bg-danger">{{ sup_department.isStore }}</span>
+                        <span *ngIf="sup_department.isStore == true" class="badge bg-warning">{{ sup_department.isStore
+                            }}</span>
+                        <span *ngIf="sup_department.isStore == false" class="badge bg-danger">{{ sup_department.isStore
+                            }}</span>
                     </td>
                     <td>
-                        <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getSubDepartmentById(sup_department.id)" data-bs-toggle="modal" data-bs-target="#editSubDepartment">
-              <i class="fa-regular fa-pen-to-square"></i>
-            </button>
-                        <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteSupDepartment(sup_department.id)">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
+                        <button class="btn me-1 border-0">
+                            <img src="assets/images/edit2.png" (click)="getSubDepartmentById(sup_department.id)"
+                                data-bs-toggle="modal" data-bs-target="#editSubDepartment" width="30">
+                        </button>
+                        <button class="btn  border-0">
+                            <img src="assets/images/delete.png" (click)="deleteSupDepartment(sup_department.id)"
+                                width="30">
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -97,18 +101,20 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Manger</span>
                         <select #mgrId required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="managerID" aria-label="Default select example">
-              <option disabled selected>Select Manger</option>
-              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}
-              </option>
-            </select>
+                            <option disabled selected>Select Manger</option>
+                            <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{
+                                employee.firstName }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Department</span>
                         <select #departId required (change)="onEditSelectDepId($event)" class="form-select" formControlName="departmentID" aria-label="Default select example">
-              <option disabled selected>Select Department</option>
-              <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
-            </select>
+                            <option disabled selected>Select Department</option>
+                            <option *ngFor="let department of departments" [value]="department.id">{{department.name}}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="input-group mb-3">
@@ -119,11 +125,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-          <i class="fa-regular fa-circle-xmark"></i>
-        </button>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
                 <button type="button" class="btn btn-outline-primary" (click)="addSubDepartment()">
-          <i class="fa-regular fa-floppy-disk"></i>
-        </button>
+                    <i class="fa-regular fa-floppy-disk"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -155,18 +161,20 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Manger</span>
                         <select #mgrId required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="managerID" aria-label="Default select example">
-              <option disabled>Select Manger</option>
-              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}
-              </option>
-            </select>
+                            <option disabled>Select Manger</option>
+                            <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{
+                                employee.firstName }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Department</span>
                         <select #departId required (change)="onEditSelectDepId($event)" class="form-select" formControlName="departmentID" aria-label="Default select example">
-              <option disabled>Select Department</option>
-              <option *ngFor="let department of departments" [value]="department.id">{{department.name}}</option>
-            </select>
+                            <option disabled>Select Department</option>
+                            <option *ngFor="let department of departments" [value]="department.id">{{department.name}}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="input-group mb-3">
@@ -177,11 +185,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-          <i class="fa-regular fa-circle-xmark"></i>
-        </button>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
                 <button type="button" class="btn btn-outline-info" (click)="editSubDepartment()">
-          <i class="fa-regular fa-pen-to-square"></i>
-        </button>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </button>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Employee } from './../../shared/models/employee';
 import { Department } from './../../shared/models/department';
+import { SalesMan } from './../../shared/models/salesMan';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class EmployeeService {
     return this._HttpClient.post<Employee[]>(this.apiUrl + 'Employee', employee)
   }
 
-  // ************************************ Governorate ************************************
+  // ************************************ Governorate ***********************************
 
   // get all Governorate
   getGovernorate(): Observable<any> {
@@ -43,5 +44,17 @@ export class EmployeeService {
   // get all departments
   getDepartments(): Observable<Department[]> {
     return this._HttpClient.get<Department[]>(this.apiUrl + 'Department')
+  }
+
+  // ************************************ SalesMen ***************************************
+
+  // get all salesmen
+  getSalesMen(): Observable<any> {
+    return this._HttpClient.get(this.apiUrl + 'Salesman')
+  }
+
+  // add salesman
+  addSalesMan(sales: SalesMan): Observable<SalesMan> {
+    return this._HttpClient.post<SalesMan>(this.apiUrl + 'Salesman', sales)
   }
 }

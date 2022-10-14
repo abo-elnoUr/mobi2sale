@@ -10,7 +10,7 @@ import { BranchRefund } from './../../shared/models/branchRefund';
 })
 export class DepartmentsService {
 
-  apiUrl="http://algosys-001-site8.ctempurl.com/api/V1/";
+  apiUrl = "http://algosys-001-site8.ctempurl.com/api/V1/";
 
   constructor(private _HttpClient: HttpClient) { }
 
@@ -18,12 +18,12 @@ export class DepartmentsService {
   // ************************************ employee ************************************
 
   // get all employees
-  getEmployees() :Observable<any>{
+  getEmployees(): Observable<any> {
     return this._HttpClient.get(this.apiUrl + 'Employee')
   }
 
   // get one employee
-  getEmployee(id: any) :Observable<any>{
+  getEmployee(id: any): Observable<any> {
     return this._HttpClient.get(this.apiUrl + `Employee/${id}`)
   }
 
@@ -31,100 +31,112 @@ export class DepartmentsService {
   // ************************************ departments ************************************
 
   //get department
-  getDepartments() : Observable<any>{
+  getDepartments(): Observable<any> {
     return this._HttpClient.get(this.apiUrl + 'Department')
   }
 
   // add department
-  addDepartment(department: any) :Observable<any>{
+  addDepartment(department: any): Observable<any> {
     return this._HttpClient.post(this.apiUrl + 'Department', department)
   }
 
   // get department
-  getOneDepartment(id: any) :Observable<any>{
+  getOneDepartment(id: any): Observable<any> {
     return this._HttpClient.get(this.apiUrl + `Department/${id}`)
   }
 
   // edit department
-  editDepartment(department: any, id:any) :Observable<any>{
+  editDepartment(department: any, id: any): Observable<any> {
     return this._HttpClient.put(this.apiUrl + `Department/${id}`, department)
   }
 
   // delete department
-  deleteDepartment(id: any) :Observable<any>{
+  deleteDepartment(id: any): Observable<any> {
     return this._HttpClient.delete(this.apiUrl + `Department/${id}`)
   }
 
-// ************************************ subDepartment ************************************
+  // ************************************ subDepartment ************************************
 
-// add subdepartment
-addSubDepartment(subDepartment: SubDepartment) :Observable<SubDepartment>{
-  return this._HttpClient.post<SubDepartment>(this.apiUrl + 'SubDepartment', subDepartment)
-}
+  // add subdepartment
+  addSubDepartment(subDepartment: SubDepartment): Observable<SubDepartment> {
+    return this._HttpClient.post<SubDepartment>(this.apiUrl + 'SubDepartment', subDepartment)
+  }
 
-// get all subDepartments
-getAllSubDepartments() :Observable<SubDepartment[]>{
-  return this._HttpClient.post<SubDepartment[]>(this.apiUrl + 'SubDepartment/Stores', {})
-}
+  // get all subDepartments
+  getAllSubDepartments(): Observable<SubDepartment[]> {
+    return this._HttpClient.post<SubDepartment[]>(this.apiUrl + 'SubDepartment/Stores', {})
+  }
 
-// get subdepartment by id
-getSupdepartmentById(deptId: any) :Observable<any>{
-  return this._HttpClient.post(this.apiUrl + 'SubDepartment/GetSub', {deptId})
-}
+  // get subdepartment by id
+  getSupdepartmentById(deptId: any): Observable<any> {
+    return this._HttpClient.post(this.apiUrl + 'SubDepartment/GetSub', { deptId })
+  }
 
-// get subdepartment by search text
-getSupdepartmentByText(searchText: any, deptId: any) :Observable<any>{
-  return this._HttpClient.post(this.apiUrl + 'SubDepartment/GetSub', {searchText, deptId})
-}
+  // get subdepartment by search text
+  getSupdepartmentByText(searchText: any, deptId: any): Observable<any> {
+    return this._HttpClient.post(this.apiUrl + 'SubDepartment/GetSub', { searchText, deptId })
+  }
 
-// get subDepartment by id
-getSubDepartmentById(id: string) :Observable<SubDepartment>{
-  return this._HttpClient.get<SubDepartment>(this.apiUrl + `SubDepartment/${id}`)
-}
+  // get subDepartment by id
+  getSubDepartmentById(id: string): Observable<SubDepartment> {
+    return this._HttpClient.get<SubDepartment>(this.apiUrl + `SubDepartment/${id}`)
+  }
 
-// edit subdepartment
-editSubDepartment(subDepartment: any, id: any) :Observable<any>{
-  return this._HttpClient.put(this.apiUrl + `SubDepartment/${id}`, subDepartment)
-}
+  // edit subdepartment
+  editSubDepartment(subDepartment: any, id: any): Observable<any> {
+    return this._HttpClient.put(this.apiUrl + `SubDepartment/${id}`, subDepartment)
+  }
 
-// delete subDepartment
-deleteSupDepartment(id: string) : Observable<SubDepartment>{
-  return this._HttpClient.delete<SubDepartment>(this.apiUrl + `SubDepartment/${id}`)
-}
+  // delete subDepartment
+  deleteSupDepartment(id: string): Observable<SubDepartment> {
+    return this._HttpClient.delete<SubDepartment>(this.apiUrl + `SubDepartment/${id}`)
+  }
 
-// ************************************ Branches ************************************
+  // ************************************ Branches ************************************
 
-// get all branches
-getAllBranches() :Observable<Branch[]>{
-  return this._HttpClient.get<Branch[]>(this.apiUrl + 'Branch')
-}
+  // get all branches
+  getAllBranches(): Observable<Branch[]> {
+    return this._HttpClient.get<Branch[]>(this.apiUrl + 'Branch')
+  }
 
-// add branch
-addBranch(branch: Branch) :Observable<Branch[]>{
-  return this._HttpClient.post<Branch[]>(this.apiUrl + 'Branch', branch)
-}
+  // add branch
+  addBranch(branch: Branch): Observable<Branch[]> {
+    return this._HttpClient.post<Branch[]>(this.apiUrl + 'Branch', branch)
+  }
 
-// get branch with id
-getBranchById(id: string) :Observable<Branch>{
-  return this._HttpClient.get<Branch>(this.apiUrl + `Branch/${id}`)
-}
+  // get branch with id
+  getBranchById(id: string): Observable<Branch> {
+    return this._HttpClient.get<Branch>(this.apiUrl + `Branch/${id}`)
+  }
 
-// edit branch
-editBranch(id: string, branchEdit: Branch[]) :Observable<Branch[]>{
-  return this._HttpClient.put<Branch[]>(this.apiUrl + `Branch/${id}`, branchEdit)
-}
+  // edit branch
+  editBranch(id: string, branchEdit: Branch[]): Observable<Branch[]> {
+    return this._HttpClient.put<Branch[]>(this.apiUrl + `Branch/${id}`, branchEdit)
+  }
 
 
-// delete branch
-deleteBranch(id: string) : Observable<Branch[]>{
-  return this._HttpClient.delete<Branch[]>(this.apiUrl + `Branch/${id}`)
-}
+  // delete branch
+  deleteBranch(id: string): Observable<Branch[]> {
+    return this._HttpClient.delete<Branch[]>(this.apiUrl + `Branch/${id}`)
+  }
 
-// ************************************ Branches Refunds ************************************
+  // ************************************ Branches Refunds ************************************
 
-// get all Serials
-getAllSerials() :Observable<any>{
-  return this._HttpClient.get(this.apiUrl + 'Branchrefund/Serial')
-}
+  // get all Serials
+  getAllSerials(): Observable<any> {
+    return this._HttpClient.get(this.apiUrl + 'Branchrefund/Serial')
+  }
+
+  // ************************************ Branches Refunds To Store ************************************
+
+  // get new serial for refund to store
+  getSerialToRefundStore(): Observable<any> {
+    return this._HttpClient.get(this.apiUrl + 'BranchrefundToStore/Serial')
+  }
+
+  // get all branch refund to store
+  getBranchRefundsToStore(): Observable<any> {
+    return this._HttpClient.post<any>(this.apiUrl + 'BranchrefundToStore/Refunds', {})
+  }
 
 }

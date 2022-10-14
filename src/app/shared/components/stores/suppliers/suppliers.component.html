@@ -1,324 +1,305 @@
 <section class="container">
-  <div class="arrow-back" style="margin-top: 20px;">
-    <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"
-      ><i class="fa-solid fa-arrow-left fs-3"></i
-    ></a>
-  </div>
-<div class="suppliers-title mt-4">
-  <h5 class="text-start ms-2">Suppliers</h5>
-</div>
-
-<div class="addSupplier text-end">
-  <button class="btn btn-outline-primary" data-bs-toggle="modal"
-  data-bs-target="#addSupplier">Create Supplier<i class="fa-solid fa-truck-field-un ms-1"></i></button>
-</div>
-<div *ngIf="suppliers.length == 0" class="d-flex justify-content-center
-    align-content-center mt-5 flex-column">
-    <div class="d-flex justify-content-center align-content-center">
-      <img src="assets/images/supplier.png" width="350">
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
     </div>
-    <h4 class="text-center my-5">No Suppliers!</h4>
-  </div>
+    <div class="suppliers-title mt-4">
+        <h5 class="text-start ms-2">Suppliers</h5>
+    </div>
 
-  <div *ngIf="suppliers.length > 0" class="brands table-responsive
+    <div class="addSupplier text-end">
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addSupplier">Create Supplier<i
+        class="fa-solid fa-truck-field-un ms-1"></i></button>
+    </div>
+    <div *ngIf="suppliers.length == 0" class="d-flex justify-content-center
+    align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/supplier.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No Suppliers!</h4>
+    </div>
+
+    <div *ngIf="suppliers.length > 0" class="brands table-responsive
     text-center mt-2">
-    <table class="table table-hover table-brand">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Mobile</th>
-          <th scope="col">Accounting</th>
-          <th scope="col">Operations</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let supplier of suppliers; let i= index"
-          style="vertical-align: middle;">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ supplier.name }}</td>
-          <td>{{ supplier.email }}</td>
-          <td>{{ supplier.mobile1 }}</td>
-          <td>
-            <a [routerLink]="['../../stores/account', supplier.id]" class="btn btn-outline-primary"><i class="fa-solid fa-database"></i></a>
-          </td>
-          <td>
-            <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getOneSupplier(supplier.id)" data-bs-toggle="modal"
-            data-bs-target="#editSupplier">
-              <i class="fa-regular fa-pen-to-square"></i>
+        <table class="table table-hover table-brand">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Accounting</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let supplier of suppliers; let i= index" style="vertical-align: middle;">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ supplier.email }}</td>
+                    <td>{{ supplier.mobile1 }}</td>
+                    <td>
+                        <a [routerLink]="['../../stores/account', supplier.id]" class="btn btn-outline-primary"><i
+                class="fa-solid fa-database"></i></a>
+                    </td>
+                    <td>
+                        <button class="btn me-1 border-0">
+              <img src="assets/images/edit2.png" (click)="getOneSupplier(supplier.id)" data-bs-toggle="modal"
+                data-bs-target="#editSupplier" width="30">
             </button>
-            <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteSupplier(supplier.id)">
-              <i class="fa-solid fa-trash-can"></i>
+                        <button class="btn  border-0">
+              <img src="assets/images/delete.png" (click)="deleteSupplier(supplier.id)" width="30">
             </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 
 <!-- add supplier -->
 
 <div class="modal fade" id="addSupplier" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Supplier </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="addSupplierForm">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name</span>
-                <input type="text"  class="form-control" placeholder=" Name" formControlName="name" />
-              </div>
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Supplier </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form [formGroup]="addSupplierForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Name</span>
+                                <input type="text" class="form-control" placeholder=" Name" formControlName="name" />
+                            </div>
+                        </div>
 
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Email</span>
-                <input type="email"  class="form-control" placeholder="Email" formControlName="email"
-                   />
-              </div>
-            </div>
-          </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Email</span>
+                                <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Mobile 1</span>
-                <input type="text"  class="form-control" placeholder="Mobile 1" formControlName="mobile1"
-                   />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Mobile 2</span>
-                <input type="text"  class="form-control" placeholder="Mobile 2" formControlName="mobile2"
-                   />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Phone</span>
-                <input type="text"  class="form-control" placeholder="Phone" formControlName="phone"
-                   />
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Mobile 1</span>
+                                <input type="text" class="form-control" placeholder="Mobile 1" formControlName="mobile1" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Mobile 2</span>
+                                <input type="text" class="form-control" placeholder="Mobile 2" formControlName="mobile2" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Phone</span>
+                                <input type="text" class="form-control" placeholder="Phone" formControlName="phone" />
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Tax Record Number</span>
-                <input type="number"  class="form-control" placeholder="Tax Record Number" formControlName="taxRecordNumber"
-                   />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Trade Record Number</span>
-                <input type="number"  class="form-control" placeholder="Trade Record Number" formControlName="tradeRecordNumber"
-                   />
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Tax Record Number</span>
+                                <input type="number" class="form-control" placeholder="Tax Record Number" formControlName="taxRecordNumber" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Trade Record Number</span>
+                                <input type="number" class="form-control" placeholder="Trade Record Number" formControlName="tradeRecordNumber" />
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Tax Record Image</span>
-                <input type="file"  class="form-control" (change)="onPickImageTax($event)"  placeholder="Trade Record Image" />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Trade Record Image</span>
-                <input type="file"  class="form-control" (change)="onPickImageTrade($event)"  placeholder="Trade Record Image" />
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Tax Record Image</span>
+                                <input type="file" class="form-control" (change)="onPickImageTax($event)" placeholder="Trade Record Image" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Trade Record Image</span>
+                                <input type="file" class="form-control" (change)="onPickImageTrade($event)" placeholder="Trade Record Image" />
+                            </div>
+                        </div>
+                    </div>
 
 
-          <div class="row">
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Countries</span>
-                <select required class="form-select" (change)="onAddSelectCountry($event)" formControlName="countryId" aria-label="Default select example">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Countries</span>
+                                <select required class="form-select" (change)="onAddSelectCountry($event)" formControlName="countryId" aria-label="Default select example">
                   <option disabled selected>Select Country</option>
-                  <option  *ngFor="let contry of countrys; let i = index" [value]="contry.id">{{ contry.name }}</option>
+                  <option *ngFor="let contry of countrys; let i = index" [value]="contry.id">{{ contry.name }}</option>
                 </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon2">Fax</span>
-                  <input type="text"  class="form-control" placeholder="Fax" formControlName="fax"
-                     />
-                </div>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Address</span>
-                <input type="text"  class="form-control" placeholder="Address" formControlName="address"
-                   />
-              </div>
-            </div>
-          </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Fax</span>
+                                <input type="text" class="form-control" placeholder="Fax" formControlName="fax" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Address</span>
+                                <input type="text" class="form-control" placeholder="Address" formControlName="address" />
+                            </div>
+                        </div>
+                    </div>
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
           <i class="fa-regular fa-circle-xmark"></i>
         </button>
-        <button type="button" (click)="addSupplier()" class="btn btn-outline-primary">
+                <button type="button" (click)="addSupplier()" class="btn btn-outline-primary">
           <i class="fa-regular fa-floppy-disk"></i>
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
 <!-- edit supplier -->
 
 <div class="modal fade" id="editSupplier" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Supplier </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="editSupplierForm">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name</span>
-                <input type="text"  class="form-control" placeholder=" Name" formControlName="name" />
-              </div>
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Supplier </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <form [formGroup]="editSupplierForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Name</span>
+                                <input type="text" class="form-control" placeholder=" Name" formControlName="name" />
+                            </div>
+                        </div>
 
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Email</span>
-                <input type="email"  class="form-control" placeholder="Email" formControlName="email"
-                   />
-              </div>
-            </div>
-          </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Email</span>
+                                <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Mobile 1</span>
-                <input type="text"  class="form-control" placeholder="Mobile 1" formControlName="mobile1"
-                   />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Mobile 2</span>
-                <input type="text"  class="form-control" placeholder="Mobile 2" formControlName="mobile2"
-                   />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Phone</span>
-                <input type="text"  class="form-control" placeholder="Phone" formControlName="phone"
-                   />
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Mobile 1</span>
+                                <input type="text" class="form-control" placeholder="Mobile 1" formControlName="mobile1" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Mobile 2</span>
+                                <input type="text" class="form-control" placeholder="Mobile 2" formControlName="mobile2" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Phone</span>
+                                <input type="text" class="form-control" placeholder="Phone" formControlName="phone" />
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Tax Record Number</span>
-                <input type="number"  class="form-control" placeholder="Tax Record Number" formControlName="taxRecordNumber"
-                   />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Trade Record Number</span>
-                <input type="number"  class="form-control" placeholder="Trade Record Number" formControlName="tradeRecordNumber"
-                   />
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Tax Record Number</span>
+                                <input type="number" class="form-control" placeholder="Tax Record Number" formControlName="taxRecordNumber" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Trade Record Number</span>
+                                <input type="number" class="form-control" placeholder="Trade Record Number" formControlName="tradeRecordNumber" />
+                            </div>
+                        </div>
+                    </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div *ngIf="!supplier?.taxRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
-                <img src="assets/images/image.png" width="50">
-              </div>
-              <div *ngIf="supplier?.taxRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
-                <img [src]="imageUrl + '/' + supplier?.taxRecordUrl" width="50">
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Tax Record Image</span>
-                <input type="file"  class="form-control" (change)="onEditImageTax($event)" placeholder="Trade Record Image"
-                   />
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div *ngIf="!supplier?.tradeRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
-                <img src="assets/images/image.png" width="50">
-              </div>
-              <div *ngIf="supplier?.tradeRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
-                <img [src]="imageUrl + '/' + supplier?.tradeRecordUrl" width="50">
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Trade Record Image</span>
-                <input type="file"  class="form-control" (change)="onEditImageTrade($event)" placeholder="Trade Record Image"
-                   />
-              </div>
-            </div>
-          </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div *ngIf="!supplier?.taxRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
+                                <img src="assets/images/image.png" width="50">
+                            </div>
+                            <div *ngIf="supplier?.taxRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
+                                <img [src]="imageUrl + '/' + supplier?.taxRecordUrl" width="50">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Tax Record Image</span>
+                                <input type="file" class="form-control" (change)="onEditImageTax($event)" placeholder="Trade Record Image" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div *ngIf="!supplier?.tradeRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
+                                <img src="assets/images/image.png" width="50">
+                            </div>
+                            <div *ngIf="supplier?.tradeRecordUrl" class="img text-center p-1 bg-info w-25 mx-auto rounded mb-1">
+                                <img [src]="imageUrl + '/' + supplier?.tradeRecordUrl" width="50">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Trade Record Image</span>
+                                <input type="file" class="form-control" (change)="onEditImageTrade($event)" placeholder="Trade Record Image" />
+                            </div>
+                        </div>
+                    </div>
 
 
-          <div class="row">
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Countries</span>
-                <select required class="form-select" (change)="onEditSelectCountry($event)" formControlName="countryId" aria-label="Default select example">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Countries</span>
+                                <select required class="form-select" (change)="onEditSelectCountry($event)" formControlName="countryId" aria-label="Default select example">
                   <option disabled selected>Select Country</option>
-                  <option  *ngFor="let contry of countrys; let i = index" [value]="contry.id">{{ contry.name }}</option>
+                  <option *ngFor="let contry of countrys; let i = index" [value]="contry.id">{{ contry.name }}</option>
                 </select>
-              </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="basic-addon2">Fax</span>
-                  <input type="text"  class="form-control" placeholder="Fax" formControlName="fax"
-                     />
-                </div>
-            </div>
-            <div class="col-md-4">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Address</span>
-                <input type="text"  class="form-control" placeholder="Address" formControlName="address"
-                   />
-              </div>
-            </div>
-          </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Fax</span>
+                                <input type="text" class="form-control" placeholder="Fax" formControlName="fax" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">Address</span>
+                                <input type="text" class="form-control" placeholder="Address" formControlName="address" />
+                            </div>
+                        </div>
+                    </div>
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
           <i class="fa-regular fa-circle-xmark"></i>
         </button>
-        <button type="button" (click)="updateSupplier()" class="btn btn-outline-info">
+                <button type="button" (click)="updateSupplier()" class="btn btn-outline-info">
           <i class="fa-regular fa-pen-to-square"></i>
         </button>
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

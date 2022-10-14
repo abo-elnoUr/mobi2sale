@@ -1,8 +1,8 @@
-.salesMen-title {
+.branchRefundToStore-title {
     position: relative;
 }
 
-.salesMen-title h5::after {
+.branchRefundToStore-title h5::after {
     content: "";
     position: absolute;
     top: 0;

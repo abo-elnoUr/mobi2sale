@@ -1,1 +1,115 @@
-<p>sales-man works!</p>
+<section class="container" style="height: 100vh">
+    <div class="arrow-back" style="margin-top: 20px">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+                class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="salesMen-title mt-4">
+        <h5 class="text-start ms-2">SalesMen</h5>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 col-sm-12">
+            <div class="input-group my-3">
+                <span class="input-group-text" id="name"><i class="fa-solid
+            fa-magnifying-glass"></i></span>
+                <input type="search" class="form-control input-search" style="outline:
+          none" placeholder="Search ..." aria-describedby="name" />
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 text-end">
+            <button class="btn btn-outline-primary" (click)="getEmp()" data-bs-toggle="modal" data-bs-target="#addSalesMan">Create
+                SalesMan<i class="fa-solid fa-sack-dollar ms-1"></i></button>
+        </div>
+    </div>
+
+    <div *ngIf="salesMen.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/salesman.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No SalesMen!</h4>
+    </div>
+
+    <div *ngIf="salesMen.length > 0" class="table-responsive text-center mt-2">
+        <table class="table table-hover table-brand">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sales of salesMen; let i= index" style="vertical-align: middle; cursor: pointer;">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ sales.fullName }}</td>
+                    <td>
+                        <button class="btn me-1 border-0">
+                            <img src="assets/images/edit2.png" width="30">
+                        </button>
+                        <button class="btn  border-0">
+                            <img src="assets/images/delete.png" width="30">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section>
+
+<!-- add department form -->
+
+<div class="modal fade" id="addSalesMan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add SalesMan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addSalesManFrom">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Employee Name</span>
+                        <select #mgrId (change)="onSelectEmp($event)" class="form-select" aria-label="Default select example">
+                            <option disabled selected>Select Employee</option>
+                            <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{
+                                employee.firstName }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Limit</span>
+                        <input type="number" class="form-control" placeholder="Limit" formControlName="limit" aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Target</span>
+                        <input type="number" class="form-control" placeholder="Target" formControlName="target" aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Start Target</span>
+                        <input type="date" class="form-control" placeholder="Start Target" formControlName="targetSatrt" aria-label="description" aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">End Target</span>
+                        <input type="date" class="form-control" placeholder="End Target" formControlName="targetEnd" aria-label="description" aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Bonuce Before Time</span>
+                        <input type="number" class="form-control" placeholder="Bonuce Before Time" formControlName="bonusBeforeTime" aria-label="description" aria-describedby="basic-addon2" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon2">Bonuce</span>
+                        <input type="number" class="form-control" placeholder="Bonuce" formControlName="bonus" aria-label="description" aria-describedby="basic-addon2" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+                <button type="button" (click)="addSalesMan()" class="btn btn-outline-primary">
+                    <i class="fa-regular fa-floppy-disk"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

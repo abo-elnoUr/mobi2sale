@@ -7,19 +7,23 @@ import { BranchRefundComponent } from './branch-refund/branch-refund.component';
 import { BranchComponent } from './branch/branch.component';
 import { DepartmentComponent } from './department/department.component';
 import { SupDepartmentComponent } from './sup-department/sup-department.component';
+import { BranchRefundToStoreComponent } from './branch-refund-to-store/branch-refund-to-store.component';
 
 const routes: Routes = [
-  {path: '', component: DepartmentsComponent},
-  {path: '', children: [
-    {path: 'department', component: DepartmentComponent, canActivate: [AuthGuard]},
-    {path: 'subDepartment', component: SupDepartmentComponent, canActivate: [AuthGuard]},
-    {path: 'branch', component: BranchComponent, canActivate: [AuthGuard]},
-    {path: 'branchRefund', component: BranchRefundComponent, canActivate: [AuthGuard]}
-  ]},
-  ];
+  { path: '', component: DepartmentsComponent },
+  {
+    path: '', children: [
+      { path: 'department', component: DepartmentComponent, canActivate: [AuthGuard] },
+      { path: 'subDepartment', component: SupDepartmentComponent, canActivate: [AuthGuard] },
+      { path: 'branch', component: BranchComponent, canActivate: [AuthGuard] },
+      { path: 'branchRefund', component: BranchRefundComponent, canActivate: [AuthGuard] },
+      { path: 'branchRefundToStore', component: BranchRefundToStoreComponent, canActivate: [AuthGuard] }
+    ]
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-exports: [RouterModule]
+  exports: [RouterModule]
 })
 export class DepartmentsModuleRoutingModule { }

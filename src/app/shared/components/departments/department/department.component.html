@@ -1,7 +1,7 @@
 <section class="container" style="height: 100vh">
     <div class="arrow-back" style="margin-top: 20px">
         <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
-        class="fa-solid fa-arrow-left fs-3"></i></a>
+                class="fa-solid fa-arrow-left fs-3"></i></a>
     </div>
 
     <div class="department-title mt-4">
@@ -10,9 +10,9 @@
 
     <div class="text-end">
         <button class="btn btn-outline-primary text-end btn-add-brand" data-bs-toggle="modal" data-bs-target="#addDepartment">
-      Create Department
-      <i class="fa-solid fa-network-wired"></i>
-    </button>
+            Create Department
+            <i class="fa-solid fa-network-wired"></i>
+        </button>
     </div>
     <div *ngIf="departments.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
         <div class="d-flex justify-content-center align-content-center">
@@ -38,12 +38,13 @@
                         {{ department.phone }}
                     </td>
                     <td>
-                        <button class="btn btn-outline-info me-1 btn-edit-brand" (click)="getDepartmrnt(department.id)" data-bs-toggle="modal" data-bs-target="#editDepartment">
-              <i class="fa-regular fa-pen-to-square"></i>
-            </button>
-                        <button class="btn btn-outline-danger btn-delete-brand" (click)="deleteDepartment(department.id)">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
+                        <button class="btn me-1 border-0">
+                            <img src="assets/images/edit2.png" (click)="getDepartmrnt(department.id)"
+                                data-bs-toggle="modal" data-bs-target="#editDepartment" width="30">
+                        </button>
+                        <button class="btn  border-0">
+                            <img src="assets/images/delete.png" (click)="deleteDepartment(department.id)" width="30">
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -73,10 +74,11 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Manger</span>
                         <select #mgrId (change)="onSelectMgrId($event)" class="form-select" aria-label="Default select example">
-              <option disabled selected>Select Manger</option>
-              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}
-              </option>
-            </select>
+                            <option disabled selected>Select Manger</option>
+                            <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{
+                                employee.firstName }}
+                            </option>
+                        </select>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Description</span>
@@ -86,11 +88,11 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-          <i class="fa-regular fa-circle-xmark"></i>
-        </button>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
                 <button type="button" (click)="addDepartment()" class="btn btn-outline-primary">
-          <i class="fa-regular fa-floppy-disk"></i>
-        </button>
+                    <i class="fa-regular fa-floppy-disk"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -117,8 +119,8 @@
               editDepartmentFormValidate['name'].touched)
           ">
                         <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['name'].errors?.['required']">
-              name required
-            </small>
+                            name required
+                        </small>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Phone</span>
@@ -130,16 +132,17 @@
               editDepartmentFormValidate['phone'].touched)
           ">
                         <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['phone'].errors?.['required']">
-              phone required
-            </small>
+                            phone required
+                        </small>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Manger</span>
                         <select #mgrId2 required (change)="onEditSelectMgrId($event)" class="form-select" formControlName="manger" aria-label="Default select example">
-              <option disabled selected>Select Manger</option>
-              <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{ employee.firstName }}
-              </option>
-            </select>
+                            <option disabled selected>Select Manger</option>
+                            <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{
+                                employee.firstName }}
+                            </option>
+                        </select>
                     </div>
                     <div *ngIf="
             editDepartmentFormValidate['manger'].invalid &&
@@ -147,8 +150,8 @@
               editDepartmentFormValidate['manger'].touched)
           ">
                         <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['manger'].errors?.['required']">
-              manger required
-            </small>
+                            manger required
+                        </small>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon2">Description</span>
@@ -160,18 +163,18 @@
               editDepartmentFormValidate['description'].touched)
           ">
                         <small class="text-black text-muted mb-1" *ngIf="editDepartmentFormValidate['description'].errors?.['required']">
-              description required
-            </small>
+                            description required
+                        </small>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
-          <i class="fa-regular fa-circle-xmark"></i>
-        </button>
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
                 <button type="button" (click)="editDepartment()" class="btn btn-outline-info">
-          <i class="fa-regular fa-pen-to-square"></i>
-        </button>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </button>
             </div>
         </div>
     </div>
