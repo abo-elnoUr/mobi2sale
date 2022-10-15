@@ -1,7 +1,7 @@
-<!-- <div *ngIf="isLoading | async" class="loading d-flex justify-content-center align-items-center h-100">
+<!-- <div  class="loading d-flex justify-content-center align-items-center h-100">
     <h1>Loading...</h1>
 </div> -->
-<section class="loading">
+<section *ngIf="isLoading | async" class="loading">
     <div class="main_body">
         <div class="sub_body">
             <span>

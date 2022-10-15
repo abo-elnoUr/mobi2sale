@@ -7,4 +7,5 @@ export interface SalesMan {
     employeeId: string;
     bonusBeforeTime: number;
     bonus: number;
+    fullName: number;
 }

@@ -27,6 +27,21 @@ export class EmployeeService {
     return this._HttpClient.post<Employee[]>(this.apiUrl + 'Employee', employee)
   }
 
+  // get employee by id
+  getEmployee(id: string) :Observable<any>{
+    return this._HttpClient.get<any>(this.apiUrl + `Employee/${id}`)
+  }
+
+  // edit employee
+  editEmployee(id: string, emp:any) :Observable<Employee>{
+    return this._HttpClient.put<Employee>(this.apiUrl + `Employee/${id}`, emp)
+  }
+
+  // delete employee
+  deleteEmployee(id: string) :Observable<Employee>{
+    return this._HttpClient.delete<Employee>(this.apiUrl + `Employee/${id}`)
+  }
+
   // ************************************ Governorate ***********************************
 
   // get all Governorate
@@ -50,11 +65,26 @@ export class EmployeeService {
 
   // get all salesmen
   getSalesMen(): Observable<any> {
-    return this._HttpClient.get(this.apiUrl + 'Salesman')
+    return this._HttpClient.get<SalesMan>(this.apiUrl + 'Salesman')
   }
 
   // add salesman
-  addSalesMan(sales: SalesMan): Observable<SalesMan> {
+  addSalesMan(sales: SalesMan): Observable<any> {
     return this._HttpClient.post<SalesMan>(this.apiUrl + 'Salesman', sales)
+  }
+
+  // get one salesman
+  getOneSalesMan(id: string) :Observable<any>{
+    return this._HttpClient.get<SalesMan>(this.apiUrl + `Salesman/${id}`)
+  }
+
+  // edit sales man
+  updateSalesMan(id: string, sales: SalesMan) :Observable<SalesMan>{
+    return this._HttpClient.put<SalesMan>(this.apiUrl + `Salesman/${id}`, sales)
+  }
+
+  // delete sales man
+  deleteSalesMan(id: string) :Observable<SalesMan>{
+    return this._HttpClient.delete<SalesMan>(this.apiUrl + `Salesman/${id}`)
   }
 }

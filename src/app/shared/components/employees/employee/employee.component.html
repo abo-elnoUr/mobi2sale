@@ -1,5 +1,6 @@
 <section class="container" style="height: 100vh">
-    <div class="arrow-back" style="margin-top: 20px">
+  <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
         <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
         class="fa-solid fa-arrow-left fs-3"></i></a>
     </div>
@@ -35,6 +36,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Full Name</th>
                     <th scope="col">Mobile</th>
+                    <th scope="col">View</th>
                     <th scope="col">Operations</th>
                 </tr>
             </thead>
@@ -44,10 +46,13 @@
                     <td>{{ emp.firstName + ' ' + emp.lastName }}</td>
                     <td>{{ emp.mobile1 }}</td>
                     <td>
-                        <button class="btn me-1 border-0">
+                      <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#viewEmployee" (click)="showEmp(emp.id)" ><i class="fa-regular fa-eye"></i></button>
+                    </td>
+                    <td>
+                        <button class="btn me-1 border-0" data-bs-toggle="modal" (click)="getEmp(emp.id)" data-bs-target="#editEmployee">
               <img src="assets/images/edit2.png" width="30">
             </button>
-                        <button class="btn  border-0">
+                        <button class="btn  border-0" (click)="deleteEmployee(emp.id)">
               <img src="assets/images/delete.png" width="30">
             </button>
                     </td>
@@ -220,4 +225,220 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- edit employee modal -->
+
+<div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Employee </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="editEmployeeForm">
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon1"><img src="assets/images/forms/name.png" class="me-1"
+                  width="25"> First
+                Name</span>
+                              <input type="text" class="form-control" placeholder=" First Name" formControlName="firstName" />
+                          </div>
+                      </div>
+
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/name.png" class="me-1"
+                  width="25">Last Name</span>
+                              <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/birth.png" class="me-1"
+                  width="25">Date Of Birth</span>
+                              <input type="text" class="form-control" placeholder="Date Of Birth" formControlName="dateOfBrith" />
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/phone.png" class="me-1"
+                  width="25">Mobile 1</span>
+                              <input type="number" class="form-control" placeholder="Mobile 1" formControlName="mobile1" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/phone.png" class="me-1"
+                  width="25">Mobile 2</span>
+                              <input type="number" class="form-control" placeholder="Mobile 2" formControlName="mobile2" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/call.png" class="me-1"
+                  width="25">Phone</span>
+                              <input type="number" class="form-control" placeholder="Phone" formControlName="phone" />
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/email.png" class="me-1"
+                  width="25">Email</span>
+                              <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/gallery.png" class="me-1"
+                  width="25">Image</span>
+                              <input type="file" class="form-control" (change)="onUpdateImageEmp($event)" placeholder="Iamge" />
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/department.png"
+                  class="me-1" width="25">Department</span>
+                              <select required class="form-select" (change)="onEditSelectDepartId($event)" aria-label="Default select example">
+                <option disabled selected>Select Department</option>
+                <option *ngFor="let depart of departments; let i = index" [value]="depart.id">{{ depart.name }}
+                </option>
+              </select>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/visa.png" class="me-1"
+                  width="25">Visa Number</span>
+                              <input type="number" class="form-control" placeholder="Visa Number" formControlName="visaNumber" />
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/visa2.png" class="me-1"
+                  width="25">
+                Visa
+                Image</span>
+                              <input type="file" class="form-control" (change)="onEditImageVisa($event)" placeholder="Visa Image" />
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/government.png"
+                  width="25" class="me-1">Governorate</span>
+                              <select required class="form-select" (change)="onEditSelectGov($event)" aria-label="Default select example">
+                <option disabled selected>Select Governorate</option>
+                <option *ngFor="let gov of governorates; let i = index" [value]="gov.id">{{ gov.name }}</option>
+              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="input-group mb-3">
+                              <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/map.png" width="25"
+                  class="me-1">District</span>
+                              <select required class="form-select" (change)="onEditSelectDistrict($event)" formControlName="districtID" aria-label="Default select example">
+                <option disabled selected>Select District</option>
+                <option *ngFor="let district of districts; let i = index" [value]="district.id">{{ district.name }}
+                </option>
+              </select>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon2"><img src="assets/images/forms/address.png" width="25"
+                class="me-1">Address</span>
+                            <input type="text" class="form-control" placeholder="Address" formControlName="street" />
+                        </div>
+                    </div>
+                  </div>
+
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+        <i class="fa-regular fa-circle-xmark"></i>
+      </button>
+              <button type="button" (click)="editEmployee()" class="btn btn-outline-info">
+                <i class="fa-regular fa-pen-to-square"></i>
+      </button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- veiw employee modal -->
+
+<div *ngIf="empById" class="modal fade" id="viewEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">View Employee</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <label class="me-1">Name :  </label>
+                  <label class="text-muted">{{ nameEmpF + ' ' + nameEmpL }}</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <label class="me-1">Mobile 1 :  </label>
+                  <label class="text-muted">{{ mobile1Emp }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <label class="me-1">Mobile 2 :  </label>
+                  <label class="text-muted">{{ mobile2Emp }}</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <label class="me-1">Date Of Birth :  </label>
+                  <label class="text-muted">{{ dateOfBrithEmp | date }}</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <label class="me-1">Email :  </label>
+                  <label class="text-muted">{{ emailEmp }}</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group mb-3">
+                  <label class="me-1">Governorate :  </label>
+                  <label class="text-muted">{{ governorateEmp }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                  <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+          </div>
+      </div>
+  </div>
 </div>

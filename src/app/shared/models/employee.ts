@@ -14,5 +14,5 @@ export interface Employee {
   districtID: string;
   street: string;
   password: number;
-
+  governorate: string;
 }

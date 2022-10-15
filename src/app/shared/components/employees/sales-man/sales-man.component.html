@@ -1,4 +1,6 @@
 <section class="container" style="height: 100vh">
+  <div style="height: 50px;"></div>
+
     <div class="arrow-back" style="margin-top: 20px">
         <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
                 class="fa-solid fa-arrow-left fs-3"></i></a>
@@ -42,10 +44,10 @@
                     <th scope="row">{{ i + 1 }}</th>
                     <td>{{ sales.fullName }}</td>
                     <td>
-                        <button class="btn me-1 border-0">
-                            <img src="assets/images/edit2.png" width="30">
+                        <button class="btn me-1 border-0" data-bs-toggle="modal" data-bs-target="#editSalesMan" (click)="getOneSalesMan(sales.id)">
+                            <img src="assets/images/edit2.png" width="30" >
                         </button>
-                        <button class="btn  border-0">
+                        <button class="btn  border-0" (click)="deleteSalesMan(sales.id)">
                             <img src="assets/images/delete.png" width="30">
                         </button>
                     </td>
@@ -69,7 +71,7 @@
                 <form [formGroup]="addSalesManFrom">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">Employee Name</span>
-                        <select #mgrId (change)="onSelectEmp($event)" class="form-select" aria-label="Default select example">
+                        <select  (change)="onSelectEmp($event)" class="form-select" aria-label="Default select example">
                             <option disabled selected>Select Employee</option>
                             <option *ngFor="let employee of employees; let i = index" [value]="employee.id">{{
                                 employee.firstName }}
@@ -112,4 +114,54 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- edit department form -->
+
+<div class="modal fade" id="editSalesMan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit SalesMan</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form [formGroup]="editSalesManFrom">
+
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Limit</span>
+                      <input type="number" class="form-control" placeholder="Limit" formControlName="limit" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Target</span>
+                      <input type="number" class="form-control" placeholder="Target" formControlName="target" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Start Target</span>
+                      <input type="text" class="form-control" placeholder="Start Target" formControlName="targetSatrt" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">End Target</span>
+                      <input type="text" class="form-control" placeholder="End Target" formControlName="targetEnd" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Bonuce Before Time</span>
+                      <input type="number" class="form-control" placeholder="Bonuce Before Time" formControlName="bonusBeforeTime" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon2">Bonuce</span>
+                      <input type="number" class="form-control" placeholder="Bonuce" formControlName="bonus" aria-label="description" aria-describedby="basic-addon2" />
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                  <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+              <button type="button" (click)="editSalesMan()" class="btn btn-outline-primary">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+          </div>
+      </div>
+  </div>
 </div>

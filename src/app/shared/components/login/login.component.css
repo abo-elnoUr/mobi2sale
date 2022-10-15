@@ -138,7 +138,6 @@
   width: 15%;
   height: 2px;
   background: #555;
-  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
 }
 .cont .login-form input {
