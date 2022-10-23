@@ -1,0 +1,14 @@
+.promoCode-title{
+  position: relative;
+}
+
+.promoCode-title h5::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: #fc85ae;
+}

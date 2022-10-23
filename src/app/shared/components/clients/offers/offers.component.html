@@ -1,1 +1,68 @@
-<p>offers works!</p>
+<section class="container" style="height: 100vh">
+  <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="offer-title mt-4">
+        <h5 class="text-start ms-2">Offers</h5>
+    </div>
+    <div class=" text-end">
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addOffer">Create Offer<i
+        class="fa-solid fa-gift ms-1"></i></button>
+  </div>
+  <div *ngIf="offers.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+    <div class="d-flex justify-content-center align-content-center">
+        <img src="assets/images/gift.png" width="350">
+    </div>
+    <h4 class="text-center my-5">No Offers!</h4>
+</div>
+</section>
+
+<!-- add offer -->
+
+<div class="modal fade" id="addOffer" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Offer </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="addOfferForm">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Image</span>
+                <input type="file" class="form-control" formControlName="image" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Offer Name</span>
+                <input type="text" class="form-control" placeholder="Offer Name" formControlName="name" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Offer Pctg</span>
+                <input type="number" class="form-control" placeholder="Enter Offer" formControlName="offerPctg" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Offer Target</span>
+                <select required class="form-select">
+                  <option disabled selected>Select target</option>
+                  <option >all</option>
+                  <option >one category</option>
+                  <option >one brand</option>
+                  <option >custom</option>
+                </select>
+            </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+        <i class="fa-regular fa-circle-xmark"></i>
+      </button>
+              <button type="button" (click)="addOffer()" class="btn btn-outline-primary">
+        <i class="fa-regular fa-floppy-disk"></i>
+      </button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,1 +1,87 @@
-<p>promo-code works!</p>
+<section class="container" style="height: 100vh">
+  <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="promoCode-title mt-4">
+        <h5 class="text-start ms-2">PromoCodes</h5>
+    </div>
+    <div class=" text-end">
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addPromo">Create PromoCode<i
+        class="fa-solid fa-percent ms-1"></i></button>
+  </div>
+  <div *ngIf="promocode.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+    <div class="d-flex justify-content-center align-content-center">
+        <img src="assets/images/promo.png" width="350">
+    </div>
+    <h4 class="text-center my-5">No PromoCode!</h4>
+</div>
+</section>
+
+
+<!-- add Promo -->
+
+<div class="modal fade" id="addPromo" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add PromoCode </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="addPromoCodeForm">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">PromoCode Name</span>
+                <input type="text" class="form-control" placeholder="PromoCode Name" formControlName="name" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">PromoCode Name</span>
+                <input type="number" class="form-control" placeholder="0 - 100" formControlName="offerPctg" />
+              </div>
+              <div class="form-check form-switch mb-3">
+                <label class="form-check-label" for="flexSwitchCheckDefault">For All Cients</label>
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon2">Select Client</span>
+                <select required class="form-select" (change)="onAddSelectClient($event)">
+                  <option disabled selected>Select Client</option>
+                  <option *ngFor="let client of clients; let i = index" [value]="client.id">{{ client.name }}</option>
+                </select>
+            </div>
+            <!-- added clients table -->
+            <div class="table-responsive text-center">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Name</th>
+                          <th scope="col">opreations</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let client of clients2; let i = index" style="vertical-align: middle;">
+                          <th scope="row">{{ i+1 }}</th>
+                          <td>{{ client.name}}</td>
+                          <td>
+                              <a class="btn btn-outline-danger" (click)="removeFromClients(i)"><i
+              class="fa-solid fa-trash-can"></i></a>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+        <i class="fa-regular fa-circle-xmark"></i>
+      </button>
+              <button type="button" (click)="addPromoCode()" class="btn btn-outline-primary">
+        <i class="fa-regular fa-floppy-disk"></i>
+      </button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 export interface Client{
+  id: string;
   name: string;
   mangerName: string;
   mobile1: string;
