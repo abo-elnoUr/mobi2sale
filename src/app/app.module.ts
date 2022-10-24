@@ -21,6 +21,7 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
     NotFoundComponent,
     ProductsComponent,
     ItemsComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

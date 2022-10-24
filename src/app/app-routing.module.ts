@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'items/:id', component: ItemsComponent, canActivate: [AuthGuard] },
   { path: 'departments', loadChildren: () => import('./shared/components/departments/departments-module.module').then(m => m.DepartmentsModuleModule) },
   { path: 'clients', loadChildren: () => import('./shared/components/clients/clients.module').then(m => m.ClientsModule) },
+  { path: 'salesOpreations', loadChildren: () => import('./shared/components/sales-opreations/sales-opreations.module').then(m => m.SalesOpreationsModule) },
   { path: 'stores', loadChildren: () => import('./shared/components/stores/stores.module').then(m => m.StoresModule) },
   { path: 'employees', loadChildren: () => import('./shared/components/employees/employyes.module').then(m => m.EmployyesModule) },
   { path: '**', component: NotFoundComponent },

@@ -3,3 +3,4 @@
 [Suppliers] (error while delete)
 [Suppliers] (error while update in mobile format remove '+')
 [Suppliers] (error while update in images)
+[Suppliers] (error on delete)

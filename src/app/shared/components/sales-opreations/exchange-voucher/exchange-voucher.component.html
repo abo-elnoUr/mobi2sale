@@ -1,0 +1,304 @@
+<section class="container" style="height: 100vh">
+  <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+        class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="exchangeVoucher-title mt-4">
+        <h5 class="text-start ms-2">Exchange Voucher</h5>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-md-6 col-sm-12">
+          <div class="input-group my-3">
+              <span class="input-group-text" id="name"><i class="fa-solid
+          fa-magnifying-glass"></i></span>
+              <input type="search" class="form-control input-search" style="outline:
+        none" placeholder="Search ..." aria-describedby="name" />
+          </div>
+      </div>
+      <div class="col-md-3 col-sm-12 text-end">
+          <button class="btn btn-outline-primary" data-bs-toggle="modal" (click)="openModal()" data-bs-target="#addBranchExchange">Create Branch Exchange<i
+            class="fa-solid fa-right-left ms-1"></i></button>
+      </div>
+      <div class="col-md-3 col-sm-12 text-end">
+          <button class="btn btn-outline-secondary" data-bs-toggle="modal" (click)="openModal()" data-bs-target="#addSalesmanExchange">Create Sales Exchange<i
+            class="fa-solid fa-right-left ms-1"></i></button>
+      </div>
+  </div>
+  <div *ngIf="exchangVoucher.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+    <div class="d-flex justify-content-center align-content-center">
+        <img src="assets/images/exchangeVoucher.png" width="350">
+    </div>
+    <h4 class="text-center my-5">No ExchangeVoucher!</h4>
+</div>
+<div *ngIf="exchangVoucher.length > 0" class="brands table-responsive text-center mt-2">
+  <table class="table table-hover table-brand">
+      <thead>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Full Name</th>
+              <th scope="col">Operations</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let ex of exchangVoucher; let i= index" style="vertical-align: middle;">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ ex.name }}</td>
+              <td>
+                  <button class="btn me-1 border-0">
+        <img src="assets/images/edit2.png" width="30">
+      </button>
+                  <button class="btn  border-0" >
+        <img src="assets/images/delete.png" width="30">
+      </button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+</section>
+
+<!-- add exchange voucher to branch -->
+
+<div class="modal fade" id="addBranchExchange" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create Branch Exchange Voucher </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class=" rounded my-2 p-2 d-flex justify-content-between" style="background-color: bisque;">
+              <h3 class="mb-0">Employee : {{ activeUser }}</h3>
+              <p class="mb-0">{{ myDate }}</p>
+            </div>
+              <form [formGroup]="exchangeVoucherBranchForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                  <span class="input-group-text" >Store</span>
+                  <select required (change)="onAddSelectStoreId($event)" class="form-select" aria-label="Default select example">
+                      <option disabled selected>Select Store</option>
+                      <option *ngFor="let store of supDepartments; let i = index" [value]="store.id">{{ store.name }}</option>
+                  </select>
+                </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                  <span class="input-group-text" >Branch</span>
+                  <select required (change)="onAddSelectBranchId($event)" class="form-select" aria-label="Default select example">
+                      <option disabled selected>Select Branch</option>
+                      <option *ngFor="let branch of branchs; let i = index" [value]="branch.id">{{ branch.name }}</option>
+                  </select>
+                </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Category</span>
+                      <select required (change)="onAddSelectCatId($event)" class="form-select" aria-label="Default select example">
+                          <option disabled selected>Select Category</option>
+                          <option *ngFor="let cate of categorys; let i = index" [value]="cate.id">{{ cate.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Brands</span>
+                      <select required (change)="onAddSelectBrandId($event)" class="form-select" aria-label="Default select example">
+                          <option disabled selected>Select Brand</option>
+                          <option *ngFor="let brand of brands; let i = index" [value]="brand.id">{{ brand.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Product</span>
+                      <select required (change)="onAddSelectProductId($event)" class="form-select" aria-label="Default select example">
+                          <option disabled selected>Select Product</option>
+                          <option *ngFor="let product of products; let i = index" [value]="product.id">{{ product.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">Quantity</span>
+                      <input type="number" required="" class="form-control" placeholder="enter quantity" formControlName="total"  aria-label="name" aria-describedby="basic-addon1" />
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Barcode</span>
+                      <input type="text" required="" class="form-control" placeholder="enter barcode" formControlName="barCode"  aria-label="phone" aria-describedby="basic-addon2" />
+                        <button class="btn btn-outline-primary" (click)="addToProductTable()">
+                          <i class="fa-solid fa-plus"></i>
+                        </button>
+                  </div>
+                  </div>
+                </div>
+                <div class="table-responsive text-center">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Product</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Barcode</th>
+                              <th scope="col">opreations</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let pro of products2; let i = index" style="vertical-align: middle;">
+                              <th scope="row">{{ i+1 }}</th>
+                              <td>{{ pro.product}}</td>
+                              <td>{{ pro.quantity}}</td>
+                              <td>{{ pro.barCode}}</td>
+                              <td>
+                                  <a class="btn btn-outline-danger" (click)="removeFromProduct(i, pro)"><i
+                                          class="fa-solid fa-trash-can"></i></a>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                  <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+              <button type="button" class="btn btn-outline-primary" >
+                  <i class="fa-regular fa-floppy-disk"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- add exchange voucher to salesman -->
+
+<div class="modal fade" id="addSalesmanExchange" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create Exchange Voucher To Salesman </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class=" rounded my-2 p-2 d-flex justify-content-between" style="background-color: bisque;">
+              <h3 class="mb-0">Employee : {{ activeUser }}</h3>
+              <p class="mb-0">{{ myDate }}</p>
+            </div>
+              <form [formGroup]="exchangeVoucherSalesmanForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                  <span class="input-group-text" >Store</span>
+                  <select required (change)="onAddSelectStoreId($event)" class="form-select" aria-label="Default select example">
+                      <option disabled selected>Select Store</option>
+                      <option *ngFor="let store of supDepartments; let i = index" [value]="store.id">{{ store.name }}</option>
+                  </select>
+                </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                  <span class="input-group-text" >SalesMan</span>
+                  <select required (change)="onAddSelectSalesManId($event)" class="form-select" aria-label="Default select example">
+                      <option disabled selected>Select SalesMan</option>
+                      <option *ngFor="let sales of salesman; let i = index" [value]="sales.id">{{ sales.fullName }}</option>
+                  </select>
+                </div>
+                  </div>
+                </div>
+                <hr>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Category</span>
+                      <select required (change)="onAddSelectCatId($event)" class="form-select" aria-label="Default select example">
+                          <option disabled selected>Select Category</option>
+                          <option *ngFor="let cate of categorys; let i = index" [value]="cate.id">{{ cate.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Brands</span>
+                      <select required (change)="onAddSelectBrandId($event)" class="form-select" aria-label="Default select example">
+                          <option disabled selected>Select Brand</option>
+                          <option *ngFor="let brand of brands; let i = index" [value]="brand.id">{{ brand.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Product</span>
+                      <select required (change)="onAddSelectProductId($event)" class="form-select" aria-label="Default select example">
+                          <option disabled selected>Select Product</option>
+                          <option *ngFor="let product of products; let i = index" [value]="product.id">{{ product.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">Quantity</span>
+                      <input type="number" required="" class="form-control" placeholder="enter quantity" formControlName="total"  aria-label="name" aria-describedby="basic-addon1" />
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" >Barcode</span>
+                      <input type="text" required="" class="form-control" placeholder="enter barcode" formControlName="barCode"  aria-label="phone" aria-describedby="basic-addon2" />
+                        <button class="btn btn-outline-primary" (click)="addToProductTableSales()">
+                          <i class="fa-solid fa-plus"></i>
+                        </button>
+                  </div>
+                  </div>
+                </div>
+                <div class="table-responsive text-center">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">Product</th>
+                              <th scope="col">Quantity</th>
+                              <th scope="col">Barcode</th>
+                              <th scope="col">opreations</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let pro of productsSales2; let i = index" style="vertical-align: middle;">
+                              <th scope="row">{{ i+1 }}</th>
+                              <td>{{ pro.product}}</td>
+                              <td>{{ pro.total}}</td>
+                              <td>{{ pro.barCode}}</td>
+                              <td>
+                                  <a class="btn btn-outline-danger" (click)="removeFromProductSales(i, pro)"><i
+                                          class="fa-solid fa-trash-can"></i></a>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                  <i class="fa-regular fa-circle-xmark"></i>
+              </button>
+              <button type="button" class="btn btn-outline-primary" >
+                  <i class="fa-regular fa-floppy-disk"></i>
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
