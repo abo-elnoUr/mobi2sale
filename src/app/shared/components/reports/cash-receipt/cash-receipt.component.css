@@ -1,8 +1,8 @@
-.salesRefund-title {
+.cashReceipt-title {
     position: relative;
 }
 
-.salesRefund-title h5::after {
+.cashReceipt-title h5::after {
     content: "";
     position: absolute;
     top: 0;

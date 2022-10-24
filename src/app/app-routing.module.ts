@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'salesOpreations', loadChildren: () => import('./shared/components/sales-opreations/sales-opreations.module').then(m => m.SalesOpreationsModule) },
   { path: 'stores', loadChildren: () => import('./shared/components/stores/stores.module').then(m => m.StoresModule) },
   { path: 'employees', loadChildren: () => import('./shared/components/employees/employyes.module').then(m => m.EmployyesModule) },
+  { path: 'reports', loadChildren: () => import('./shared/components/reports/reports.module').then(m => m.ReportsModule) },
   { path: '**', component: NotFoundComponent },
 ]
 

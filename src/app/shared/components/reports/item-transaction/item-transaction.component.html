@@ -1,0 +1,64 @@
+<section class="container">
+    <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+                class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="itemTransaction-title mt-4">
+        <h5 class="text-start ms-2">Item Transaction</h5>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Category</span>
+                <select required (change)="onAddSelectCatId($event)" class="form-select" aria-label="Default select example">
+                    <option disabled selected>Select Category</option>
+                    <option *ngFor="let cate of categorys; let i = index" [value]="cate.id">{{ cate.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Brands</span>
+                <select required (change)="onAddSelectBrandId($event)" class="form-select" aria-label="Default select example">
+                    <option disabled selected>Select Brand</option>
+                    <option *ngFor="let brand of brands; let i = index" [value]="brand.id">{{ brand.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Product</span>
+                <select required (change)="onAddSelectProductId($event)" class="form-select" aria-label="Default select example">
+                    <option disabled selected>Select Product</option>
+                    <option *ngFor="let product of products; let i = index" [value]="product.id">{{ product.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-auto">
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">From</span>
+                <input type="date" required="" class="form-control" placeholder="enter quantity" aria-label="name" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">To</span>
+                <input type="date" required="" class="form-control" placeholder="enter quantity" aria-label="name" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-outline-primary">Search</button>
+        </div>
+
+    </div>
+    <div *ngIf="itemTransactions.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/transaction.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No Item Transaction!</h4>
+    </div>
+</section>

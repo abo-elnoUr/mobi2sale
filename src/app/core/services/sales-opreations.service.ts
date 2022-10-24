@@ -1,3 +1,4 @@
+import { Client } from 'src/app/shared/models/clients';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -39,7 +40,7 @@ export class SalesOpreationsService {
   }
 
   // get one item
-  getOneItem(id: string) :Observable<Item>{
+  getOneItem(id: string): Observable<Item> {
     return this._HttpClient.get<Item>(this.apiUrl + `Item/${id}`)
   }
 
@@ -64,4 +65,17 @@ export class SalesOpreationsService {
     return this._HttpClient.get<SalesMan>(this.apiUrl + 'Salesman')
   }
 
+  // ************************************ clients ***************************************
+
+  // get all clients
+  getClients(): Observable<Client[]> {
+    return this._HttpClient.get<Client[]>(this.apiUrl + 'Client')
+  }
+
+  // ************************************ Oder Exchange ***************************************
+
+  // get all order exchange
+  getOrderExchange(): Observable<any> {
+    return this._HttpClient.get(this.apiUrl + 'OrderExchange')
+  }
 }

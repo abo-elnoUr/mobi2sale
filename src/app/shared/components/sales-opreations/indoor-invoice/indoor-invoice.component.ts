@@ -15,7 +15,10 @@ export class IndoorInvoiceComponent implements OnInit {
   myDate: string
   activeUser: string = ''
   branchs: Branch[] = []
-  showManual: boolean = false
+  showManual: boolean = true
+  invoices: any[] = []
+  products: any[] = []
+  products2: any[] = []
 
   constructor(private _SalesOpreationsService: SalesOpreationsService, private _DatePipe: DatePipe) { }
 
@@ -24,12 +27,12 @@ export class IndoorInvoiceComponent implements OnInit {
     this.myDate = this._DatePipe.transform(new Date(), 'yyyy-MM-dd');
   }
 
-  openModal(){
+  openModal() {
     this.getBranchs()
   }
 
   // get all branchs
-  getBranchs(){
+  getBranchs() {
     this._SalesOpreationsService.getAllBranches().subscribe((branchs) => {
       this.branchs = branchs
     })
@@ -37,11 +40,15 @@ export class IndoorInvoiceComponent implements OnInit {
 
   // add invoice
 
-  toggleManual(val: boolean){
+  toggleManual(val: boolean) {
     this.showManual = val
   }
 
-  onAddSelectBranchId(event: any){
+  onAddSelectBranchId(event: any) {
+
+  }
+
+  removeFromProduct(index: number, product: any) {
 
   }
 

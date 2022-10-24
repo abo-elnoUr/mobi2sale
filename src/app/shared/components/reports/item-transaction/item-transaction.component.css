@@ -1,8 +1,8 @@
-.salesRefund-title {
+.itemTransaction-title {
     position: relative;
 }
 
-.salesRefund-title h5::after {
+.itemTransaction-title h5::after {
     content: "";
     position: absolute;
     top: 0;

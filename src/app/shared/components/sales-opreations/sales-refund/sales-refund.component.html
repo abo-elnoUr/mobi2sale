@@ -1,1 +1,145 @@
-<p>sales-refund works!</p>
+<section class="container" style="height: 100vh">
+    <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+                class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="salesRefund-title mt-4">
+        <h5 class="text-start ms-2">Invoices</h5>
+    </div>
+    <div class="row justify-content-between align-items-center">
+        <div class="col-md-6 col-sm-12">
+            <div class="input-group my-3">
+                <span class="input-group-text" id="name"><i class="fa-solid
+          fa-magnifying-glass"></i></span>
+                <input type="search" class="form-control input-search" style="outline:
+        none" placeholder="Search ..." aria-describedby="name" />
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12 text-end">
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" (click)="openModal()" data-bs-target="#addInvoice">Create Invoice<i
+                    class="fa-solid fa-square-poll-horizontal ms-1"></i></button>
+        </div>
+    </div>
+    <div *ngIf="salesRefunds.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/salesRefund.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No SalesRefund!</h4>
+    </div>
+</section>
+
+<!-- add invoice -->
+
+<div class="modal fade" id="addInvoice" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Invoice </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class=" rounded my-2 p-2 d-flex justify-content-between" style="background-color: bisque;">
+                    <h3 class="mb-0">Employee : {{ activeUser }}</h3>
+                    <p class="mb-0">{{ myDate }}</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Salesmen</span>
+                            <select required (change)="onAddSelectSalesmanId($event)" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Select SalesMan</option>
+                                <option *ngFor="let sales of salesmans; let i = index" [value]="sales.id">{{
+                                    sales.fullName }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Store</span>
+                            <select required (change)="onAddSelectStoreId($event)" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Select Store</option>
+                                <option *ngFor="let store of stores; let i = index" [value]="store.id">{{ store.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Barcode</span>
+                            <input type="text" [disabled]="showManual" class="form-control" placeholder="enter barcode" aria-label="phone" aria-describedby="basic-addon2" />
+                            <button *ngIf="!showManual" (click)="toggleManual(true)" class="btn btn-outline-warning">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                            <button *ngIf="showManual" class="btn btn-outline-primary" (click)="toggleManual(false)">
+                                Add Manully
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Quantity</span>
+                            <input type="number" class="form-control" placeholder="enter quantity" aria-label="name" aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Brand : </h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Product : </h4>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Status</span>
+                            <select required class="form-select" aria-label="Default select example">
+                                <option disabled selected>Select Status</option>
+                                <option>damages</option>
+                                <option>undamages</option>
+                            </select>
+                            <button class="btn btn-outline-primary">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive text-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Barcode</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">opreations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pro of products2; let i = index" style="vertical-align: middle;">
+                                <th scope="row">{{ i+1 }}</th>
+                                <td>{{ pro.product}}</td>
+                                <td>{{ pro.quantity}}</td>
+                                <td>{{ pro.barCode}}</td>
+                                <td>{{ pro.status}}</td>
+                                <td>
+                                    <a class="btn btn-outline-danger" (click)="removeFromProduct(i, pro)"><i
+                                            class="fa-solid fa-trash-can"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="fa-regular fa-floppy-disk"></i>
+                </button>
+            </div>
+        </div>
+    </div>

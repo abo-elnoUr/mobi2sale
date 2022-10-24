@@ -1,1 +1,142 @@
-<p>sales-area works!</p>
+<section class="container" style="height: 100vh">
+    <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+                class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="salesArea-title mt-4">
+        <h5 class="text-start ms-2">SalesArea</h5>
+    </div>
+    <div class="row d-flex justify-content-end  my-3">
+        <div class="col-md-6 col-sm-12 text-end">
+            <button class="btn btn-outline-primary" data-bs-toggle="modal" (click)="openModal()" data-bs-target="#addSalesArea">Create SalesArea<i class="fa-solid fa-layer-group ms-1"></i></button>
+        </div>
+    </div>
+    <div *ngIf="salesArea.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/salesArea.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No SalesArea!</h4>
+    </div>
+</section>
+
+<!-- add sales area -->
+
+<div class="modal fade" id="addSalesArea" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create SalesArea </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">SalesArea Name</span>
+                            <input type="number" class="form-control" placeholder="enter name" aria-label="name" aria-describedby="basic-addon1" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Supervisor</span>
+                            <select required (change)="onAddSelectSupervisorId($event)" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Select Supervisor</option>
+                                <option *ngFor="let sales of salesmans; let i = index" [value]="sales.id">{{
+                                    sales.fullName
+                                    }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 style="border-bottom: 3px solid #888; width: fit-content;" class="pb-1">
+                            Clients</h4>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Clients</span>
+                            <select required (change)="onAddSelectClientId($event)" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Select Client</option>
+                                <option *ngFor="let client of clients; let i = index" [value]="client.id">{{ client.name
+                                    }}</option>
+                            </select>
+                            <button class="btn btn-outline-primary">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="table-responsive text-center">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Client Name</th>
+                                        <th scope="col">opreations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let client of clients2; let i = index" style="vertical-align: middle;">
+                                        <th scope="row">{{ i+1 }}</th>
+                                        <td>{{ client.name}}</td>
+                                        <td>
+                                            <a class="btn btn-outline-danger" (click)="removeFromClientTable(i, client)"><i
+                                                    class="fa-solid fa-trash-can"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 style="border-bottom: 3px solid #888; width: fit-content;" class="pb-1">
+                            SalesMen</h4>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">SalesMen</span>
+                            <select required (change)="onAddSelectClientId($event)" class="form-select" aria-label="Default select example">
+                                <option disabled selected>Select Salesman</option>
+                                <option *ngFor="let sales of salesmans; let i = index" [value]="sales.id">{{
+                                    sales.fullName
+                                    }}</option>
+                            </select>
+                            <button class="btn btn-outline-primary">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                        <div class="table-responsive text-center">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Salesman Name</th>
+                                        <th scope="col">opreations</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let client of salesmans2; let i = index" style="vertical-align: middle;">
+                                        <th scope="row">{{ i+1 }}</th>
+                                        <td>{{ client.name}}</td>
+                                        <td>
+                                            <a class="btn btn-outline-danger" (click)="removeFromClientTable(i, client)"><i
+                                                    class="fa-solid fa-trash-can"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="fa-regular fa-floppy-disk"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

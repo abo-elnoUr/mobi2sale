@@ -1,0 +1,61 @@
+<section class="container">
+    <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+                class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="cashReceipt-title mt-4">
+        <h5 class="text-start ms-2">Cash Receipt</h5>
+    </div>
+    <div class="text-end">
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCashReceipt">Create Cash
+            Receipt<i class="fa-solid fa-money-bill-1-wave ms-1"></i></button>
+    </div>
+    <div *ngIf="cashReceipts.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/bill.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No Cash Receipt!</h4>
+    </div>
+</section>
+
+<!-- add cash receipt -->
+
+<div class="modal fade" id="addCashReceipt" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create Cash Receipt </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">From Salesmen</span>
+                    <select required (change)="onAddSelectSalesmanId($event)" class="form-select" aria-label="Default select example">
+                        <option disabled selected>Select Salesman</option>
+                        <option *ngFor="let sales of salesmans; let i = index" [value]="sales.id">{{
+                            sales.fullName }}
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">To Employee</span>
+                    <input type="text" disabled required="" class="form-control" placeholder="employee" aria-label="name" />
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Amount</span>
+                    <input type="number" required="" class="form-control" placeholder="Amount" aria-label="name" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+                <button type="button" class="btn btn-outline-primary">
+                    <i class="fa-regular fa-floppy-disk"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

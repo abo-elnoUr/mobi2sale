@@ -1,0 +1,41 @@
+<section class="container">
+    <div style="height: 50px;"></div>
+    <div class="arrow-back" style="margin-top: 20px;">
+        <a style="cursor: pointer; text-decoration: none" onclick="history.back(-1)"><i
+                class="fa-solid fa-arrow-left fs-3"></i></a>
+    </div>
+    <div class="salesmanAccount-title mt-4">
+        <h5 class="text-start ms-2">Salesman Account</h5>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Salesmen</span>
+                <select required (change)="onAddSelectSalesmanId($event)" class="form-select" aria-label="Default select example">
+                    <option disabled selected>Select Salesman</option>
+                    <option *ngFor="let sales of salesmans; let i = index" [value]="sales.id">{{ sales.fullName }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">From</span>
+                <input type="date" required="" class="form-control" placeholder="enter quantity" aria-label="name" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">To</span>
+                <input type="date" required="" class="form-control" placeholder="enter quantity" aria-label="name" />
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="salesmanAccounts.length == 0" class="d-flex justify-content-center align-content-center mt-5 flex-column">
+        <div class="d-flex justify-content-center align-content-center">
+            <img src="assets/images/salesmanAccount.png" width="350">
+        </div>
+        <h4 class="text-center my-5">No Salesman Account!</h4>
+    </div>
+</section>
